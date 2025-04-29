@@ -45,7 +45,7 @@ const Home = () => {
           
           <header className={styles.textContent}>
             <h1 className={styles.title}>Nicolás Fernández Castillo</h1>
-            <p className={styles.subtitle}>Bienvenido a mi portfolio</p>
+            <p className={styles.subtitle}>Bienvenido a mi portfolio.</p>
             <p className={styles.subtitleSmall}>Un espacio donde convergen la tecnología, la creatividad y la estrategia.</p>
             <p className={styles.introText}>
               Soy ingeniero industrial especializado en ciencia de datos y programación. 
