@@ -1,7 +1,23 @@
+/* Reset general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Contenedor general */
 .homeContainer {
-  padding: 1rem;
+  width: 100%;
   max-width: 1200px;
-  margin: auto;
+  padding: 1rem;
+  margin: 0 auto;
+  overflow-x: hidden;
 }
 
 /* Intro Section */
@@ -18,6 +34,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  flex-wrap: wrap;
 }
 
 .textContent {
@@ -43,7 +60,6 @@
   transform: translateY(-4px);
 }
 
-/* Text Animations */
 .title {
   text-align: center;
   font-size: 3rem;
@@ -86,6 +102,8 @@
   gap: 2rem;
   align-items: center;
   padding: 0 1rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .card {
@@ -106,11 +124,12 @@
 }
 
 .imageContainer {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
-  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }
 
 .image {
@@ -127,6 +146,8 @@
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 .cardTitle {
@@ -142,6 +163,7 @@
 
 .cardButton {
   align-self: center;
+  margin-bottom: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
   background-color: #00bcd4;
@@ -167,7 +189,7 @@
   }
 }
 
-/* Responsive para desktop */
+/* Desktop */
 @media (min-width: 768px) {
   .card {
     flex-direction: row;
@@ -176,7 +198,6 @@
 
   .imageContainer {
     width: 40%;
-    height: auto;
     padding: 1.5rem;
   }
 
@@ -189,6 +210,7 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
+    gap: 2rem;
   }
 
   .textContent {
@@ -205,14 +227,17 @@
   }
 }
 
-/* Responsive para mobile */
+/* Mobile */
 @media (max-width: 767px) {
   .card {
     min-height: 450px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .imageContainer {
-    height: 220px;
+    height: auto;
     padding: 1rem;
   }
 
@@ -224,4 +249,5 @@
     margin: 0;
   }
 }
+
 
