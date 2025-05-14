@@ -1,6 +1,17 @@
 import styles from './styles.module.css'
+import { useState } from 'react';
+
 
 const About = () => {
+  // 🧠 Estado y enlaces del CV
+  const [cvSelected, setCvSelected] = useState(null);
+
+  const baseUrl = import.meta.env.BASE_URL;
+  const cvLinks = {
+    es: `${baseUrl}CV - Nicolas Fernadez Castillo.pdf`,
+    en: `${baseUrl}CV - Nicolas Fernadez Castillo - Eng.pdf`,
+  };
+
   return (
     <section className={styles.aboutSection}>
       <div className={styles.container}>
@@ -39,6 +50,41 @@ const About = () => {
           </p>
           <a href="#contact" className={styles.ctaButton}>Saber más</a>
         </div>
+
+        <div className={styles.cvSection}>
+          <h3 className={styles.cvTitle}>Currículum Vitae</h3>
+          <p className={styles.cvText}>
+            Podés ver o descargar mi CV en el idioma que prefieras.
+          </p>
+
+          <div className={styles.cvButtons}>
+            <button onClick={() => setCvSelected('es')} className={styles.cvButton}>
+              Ver en Español
+            </button>
+            <button onClick={() => setCvSelected('en')} className={styles.cvButton}>
+              Ver en Inglés
+            </button>
+          </div>
+
+          {cvSelected && (
+            <div className={styles.cvPreview}>
+              <div className={styles.cvHeader}>
+                <p className={styles.cvFileName}>
+                  {cvSelected === 'es' ? 'CV - Español' : 'CV - Inglés'}
+                </p>
+                <button onClick={() => setCvSelected(null)} className={styles.closeButton}>
+                  ✕ Cerrar
+                </button>
+              </div>
+              <iframe
+                src={cvLinks[cvSelected]}
+                title="CV Preview"
+                className={styles.cvIframe}
+              />
+            </div>
+          )}
+        </div>
+
       </div>
     </section>
   )
