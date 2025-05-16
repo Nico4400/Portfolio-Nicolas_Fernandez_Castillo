@@ -110,36 +110,102 @@
   margin-bottom: 1.5rem;
 }
 
-.cvButtons {
+.cvGrid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
 }
 
-.cvButton {
-  background-color: #1e1e1e;
-  border: 2px solid #00bcd4;
-  color: #00bcd4;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.cvCard {
+  background-color: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.15);
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 10px #7ec6cf;
+}
+
+.cvThumbnail {
+  position: relative;
+  height: 240px;
+  background-color: #333;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
-.cvButton:hover {
+.cvImage {
+  width: 100%;
+  height: 100%;
+  object-fit:initial;
+  border-radius: 12px;
+}
+
+.cvOverlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 188, 212, 0.85);
+  color: #111;
+  font-weight: 600;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.cvActions {
+  display: flex;
+  border-top: 1px solid #444;
+}
+
+.cvActionButton {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: transparent;
+  color: #00bcd4;
+  font-weight: 600;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.cvActionButton:hover {
   background-color: #00bcd4;
   color: #111;
 }
 
 .cvPreview {
-  margin-top: 2rem;
-  background-color: #1e1e1e;
-  border: 1px solid #00bcd4;
+  background-color: #111;
+  padding: 1.5rem;
   border-radius: 12px;
-  padding: 1rem;
+  box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
+  max-width: 1000px;
+  width: 100%;
+  max-height: 95vh;
+  height: 95vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .cvHeader {
@@ -147,11 +213,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-}
-
-.cvFileName {
-  font-weight: 600;
   color: #00bcd4;
+  font-weight: 600;
 }
 
 .closeButton {
@@ -163,15 +226,31 @@
 }
 
 .cvIframe {
+  flex: 1;
   width: 100%;
-  height: 600px;
+  height: 100%;
   border: none;
   border-radius: 8px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+
+  .cvGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cvPreview {
+    padding: 1rem;
+  }
+
+  .cvHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
   .cvIframe {
-    height: 400px;
+    height: 60vh;
   }
 }

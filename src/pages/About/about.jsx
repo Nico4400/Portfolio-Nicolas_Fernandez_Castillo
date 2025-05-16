@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
 import { useState } from 'react';
+import { FiDownload } from 'react-icons/fi';
 
 
 const About = () => {
@@ -10,6 +11,7 @@ const About = () => {
   const cvLinks = {
     es: `${baseUrl}CV - Nicolas Fernadez Castillo.pdf`,
     en: `${baseUrl}CV - Nicolas Fernadez Castillo - Eng.pdf`,
+    it: `${baseUrl}CV - Nicolas Fernadez Castillo - It.pdf`,
   };
 
   return (
@@ -51,36 +53,70 @@ const About = () => {
           <a href="#contact" className={styles.ctaButton}>Saber más</a>
         </div>
 
+        {/* CV */}
         <div className={styles.cvSection}>
           <h3 className={styles.cvTitle}>Currículum Vitae</h3>
           <p className={styles.cvText}>
             Podés ver o descargar mi CV en el idioma que prefieras.
           </p>
 
-          <div className={styles.cvButtons}>
-            <button onClick={() => setCvSelected('es')} className={styles.cvButton}>
-              Ver en Español
-            </button>
-            <button onClick={() => setCvSelected('en')} className={styles.cvButton}>
-              Ver en Inglés
-            </button>
+          <div className={styles.cvGrid}>
+            {['es', 'en', 'it'].map((lang) => (
+              <div key={lang} className={styles.cvCard}>
+                <div className={styles.cvThumbnail} onClick={() => setCvSelected(lang)}>
+                  <img
+                    src={`${baseUrl}CV - Nicolas Fernadez Castillo.jpg`}
+                    alt={`Miniatura CV`}
+                    className={styles.cvImage}
+                  />
+                  <div className={styles.cvOverlay}>
+                    {lang === 'es' && 'Español'}
+                    {lang === 'en' && 'Inglés'}
+                    {lang === 'it' && 'Italiano'}
+                  </div>
+                </div>
+
+                <div className={styles.cvActions}>
+                  <button
+                    className={styles.cvActionButton}
+                    onClick={() => setCvSelected(lang)}
+                  >
+                    Ver
+                  </button>
+                  <a
+                    href={cvLinks[lang]}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.cvActionButton}
+                  >
+                    <FiDownload size={18} />
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
 
           {cvSelected && (
-            <div className={styles.cvPreview}>
-              <div className={styles.cvHeader}>
-                <p className={styles.cvFileName}>
-                  {cvSelected === 'es' ? 'CV - Español' : 'CV - Inglés'}
-                </p>
-                <button onClick={() => setCvSelected(null)} className={styles.closeButton}>
-                  ✕ Cerrar
-                </button>
+            <div className={styles.modalBackdrop} onClick={() => setCvSelected(null)}>
+              <div
+                className={styles.cvPreview}
+                onClick={(e) => e.stopPropagation()} // para evitar que se cierre al hacer click dentro del modal
+              >
+                <div className={styles.cvHeader}>
+                  <p className={styles.cvFileName}>
+                    {cvSelected === 'es' ? 'CV - Español' : cvSelected === 'en' ? 'CV - Inglés' : 'CV - Italiano'}
+                  </p>
+                  <button onClick={() => setCvSelected(null)} className={styles.closeButton}>
+                    ✕ Cerrar
+                  </button>
+                </div>
+                <iframe
+                  src={cvLinks[cvSelected]}
+                  title="CV Preview"
+                  className={styles.cvIframe}
+                />
               </div>
-              <iframe
-                src={cvLinks[cvSelected]}
-                title="CV Preview"
-                className={styles.cvIframe}
-              />
             </div>
           )}
         </div>
