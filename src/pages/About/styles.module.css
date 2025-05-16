@@ -144,6 +144,7 @@
   height: 100%;
   object-fit:initial;
   border-radius: 12px;
+  filter: blur(0.4px)
 }
 
 .cvOverlay {
