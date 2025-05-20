@@ -1,9 +1,30 @@
 import styles from './styles.module.css'
 import { useState } from 'react';
 import { FiDownload } from 'react-icons/fi';
+import avatarImg from '../../../public/ingeniero-de-software.png';
 
 
 const About = () => {
+
+  const cards = [
+    {
+      title: 'Mi misión',
+      icon: '🎯',
+      text: 'Crear soluciones tecnológicas intuitivas, escalables y sostenibles que generen impacto positivo, conectando personas, procesos y datos con eficiencia.',
+    },
+    {
+      title: 'Mi visión',
+      icon: '🚀',
+      text: 'Ser un referente en el desarrollo de productos digitales, combinando ingeniería, creatividad y propósito, construyendo un futuro mejor mediante la innovación.',
+    },
+    {
+      title: 'Mi enfoque',
+      icon: '🧠',
+      text: 'Me centro en comprender a fondo los desafíos antes de construir soluciones. Aplico pensamiento crítico, diseño centrado en el usuario y metodologías ágiles.',
+    },
+  ];
+
+
   // 🧠 Estado y enlaces del CV
   const [cvSelected, setCvSelected] = useState(null);
 
@@ -16,33 +37,43 @@ const About = () => {
 
   return (
     <section className={styles.aboutSection}>
-      <div className={styles.container}>
-        <h2 className={styles.title}>Sobre mí</h2>
+      <div className={styles.introContainer}>
+        <img src={avatarImg} alt="Avatar" className={styles.avatar} />
+        <div className={styles.introText}>
+          <h2 className={styles.intro}>
+            ¡Hola! Soy <span className={styles.highlight}>Nico</span>
+          </h2>
+          <h2 className={styles.intro}>
+            Ingeniero industrial con orientación en tecnología, programación y ciencia de datos.
+          </h2>
+          <p className={styles.body}>
+            Mi propósito es facilitar el cambio y la mejora continua a través de herramientas digitales con soluciones eficientes, innovadoras y sostenibles.
+          </p>
+        </div>
+      </div>
 
-        <p className={styles.highlight}>Soy Nicolás Fernández Castillo</p>
+      <div className={styles.divider} />
 
-        <p className={styles.intro}>
-          Ingeniero industrial con orientación en tecnología, programación y ciencia de datos. Me dedico a crear soluciones digitales que transformen procesos, impulsen la eficiencia y generen valor real para empresas y personas.
-        </p>
+      <div className={styles.aboutGrid}>
+        {cards.map((card) => (
+          <div key={card.title} className={styles.aboutCard}>
+            <div className={styles.cardIcon}>{card.icon}</div>
+            <h3 className={styles.subtitle}>{card.title}</h3>
+            <p className={styles.body}>{card.text}</p>
+          </div>
+        ))}
+      </div>
 
-        <h3 className={styles.subtitle}>Mi misión</h3>
-        <p className={styles.body}>
-          Ayudar a equipos, emprendedores y empresas a integrar herramientas tecnológicas de forma inteligente y a medida. Mi enfoque está en simplificar lo complejo, automatizar tareas repetitivas y generar información clara para una mejor toma de decisiones.
-        </p>
+      <div className={styles.divider} />
 
-        <h3 className={styles.subtitle}>Mi visión</h3>
-        <p className={styles.body}>
-          Creo en el poder de la tecnología como motor de cambio. Aspiro a que más personas y organizaciones puedan acceder a soluciones digitales simples, eficientes y sostenibles que potencien sus ideas y sus negocios.
-        </p>
-
-        <h3 className={styles.subtitle}>Mi enfoque</h3>
-        <p className={styles.body}>
-          Soy una persona analítica, práctica y autodidacta, con fuerte compromiso con el trabajo en equipo, el aprendizaje continuo y la innovación responsable. Me gusta acompañar procesos, aportar claridad técnica y construir soluciones con impacto real.
-        </p>
-
-        <p className={styles.outro}>
+      <div className={styles.cta}>
+        <h3 className={styles.subtitle}>
+          ¿Querés saber más o trabajar conmigo?
+        </h3>
+        <p className={styles.ctaDescription}>
           Si compartís esta visión o estás en búsqueda de colaboración para tu proyecto, no dudes en contactarme. Estoy siempre abierto a nuevos desafíos.
         </p>
+      </div>
 
         {/* Sección final con CTA */}
         <div className={styles.ctaBox}>
@@ -52,6 +83,8 @@ const About = () => {
           </p>
           <a href="#contact" className={styles.ctaButton}>Saber más</a>
         </div>
+
+      <div className={styles.divider} />
 
         {/* CV */}
         <div className={styles.cvSection}>
@@ -121,7 +154,7 @@ const About = () => {
           )}
         </div>
 
-      </div>
+      
     </section>
   )
 }
