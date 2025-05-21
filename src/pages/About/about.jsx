@@ -4,7 +4,6 @@ import { FiDownload } from 'react-icons/fi';
 import { TbTargetArrow } from "react-icons/tb";
 import { IoBulb } from "react-icons/io5";
 import { LuBrain } from "react-icons/lu";
-import avatarImg from '../../../public/ingeniero-de-software.png';
 
 
 const About = () => {
@@ -33,15 +32,15 @@ const About = () => {
 
   const baseUrl = import.meta.env.BASE_URL;
   const cvLinks = {
-    es: `${baseUrl}CV - Nicolas Fernandez Castillo.pdf`,
-    en: `${baseUrl}CV - Nicolas Fernandez Castillo - Eng.pdf`,
-    it: `${baseUrl}CV - Nicolas Fernandez Castillo - It.pdf`,
+    es: `${baseUrl}CV-Nicolas_Fernandez_Castillo.pdf`,
+    en: `${baseUrl}CV-Nicolas_Fernandez_Castillo-Eng.pdf`,
+    it: `${baseUrl}CV-Nicolas_Fernandez_Castillo-It.pdf`,
   };
 
   return (
     <section className={styles.aboutSection}>
       <div className={styles.introContainer}>
-        <img src={avatarImg} alt="Avatar" className={styles.avatar} />
+        <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} />
         <div className={styles.introText}>
           <h2 className={styles.intro}>
             Hola Soy <span className={styles.highlight}>Nico</span>
@@ -101,7 +100,7 @@ const About = () => {
               <div key={lang} className={styles.cvCard}>
                 <div className={styles.cvThumbnail} onClick={() => setCvSelected(lang)}>
                   <img
-                    src={`${baseUrl}CV - Nicolas Fernandez Castillo.jpg`}
+                    src={`${baseUrl}CV-Nicolas_Fernandez_Castillo.jpg`}
                     alt={`Miniatura CV`}
                     className={styles.cvImage}
                   />
