@@ -4,6 +4,7 @@ import { FiDownload } from 'react-icons/fi';
 import { TbTargetArrow } from "react-icons/tb";
 import { IoBulb } from "react-icons/io5";
 import { LuBrain } from "react-icons/lu";
+import { BsGearWide, BsFillGearFill } from "react-icons/bs";
 
 
 const About = () => {
@@ -48,7 +49,14 @@ const About = () => {
   return (
     <section className={styles.aboutSection}>
       <div className={styles.introContainer}>
-        <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} />
+        {/* <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} /> */}
+
+        <div className={styles.avatarContainer}>
+          <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} />
+          <BsFillGearFill alt="Engranaje" className={styles.gear2} /> 
+          <BsGearWide  alt="Engranaje" className={styles.gear1} />
+        </div>
+
         <div className={styles.introText}>
           <h2 className={styles.intro}>
             Hola Soy <span className={styles.highlight}>Nico</span>
