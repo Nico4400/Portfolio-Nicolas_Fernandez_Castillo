@@ -29,7 +29,7 @@ const About = () => {
 
   // 🧠 Estado y enlaces del CV
   const [cvSelected, setCvSelected] = useState(null);
-
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const baseUrl = import.meta.env.BASE_URL;
   const cvLinks = {
     es: `${baseUrl}CV-Nicolas_Fernandez_Castillo.pdf`,
@@ -45,9 +45,9 @@ const About = () => {
           <h2 className={styles.intro}>
             Hola Soy <span className={styles.highlight}>Nico</span>
           </h2>
-          <h4 className={styles.intro}>
+          <h3 className={styles.intro}>
             Ingeniero industrial con orientación en tecnología, programación y ciencia de datos.
-          </h4>
+          </h3>
           <p className={styles.body}>
             Mi propósito es facilitar el cambio y la mejora continua a través de herramientas digitales con soluciones eficientes, innovadoras y sostenibles.
           </p>
@@ -112,9 +112,14 @@ const About = () => {
                 </div>
 
                 <div className={styles.cvActions}>
-                  <button
-                    className={styles.cvActionButton}
-                    onClick={() => setCvSelected(lang)}
+                  <button className={styles.cvActionButton}
+                    onClick={() => {
+                      if (isMobile) {
+                        window.open(cvLinks[lang], '_blank');
+                      } else {
+                        setCvSelected(lang);
+                      }
+                    }}
                   >
                     Ver
                   </button>
