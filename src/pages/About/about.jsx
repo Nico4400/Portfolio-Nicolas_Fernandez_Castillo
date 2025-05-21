@@ -29,7 +29,15 @@ const About = () => {
 
   // 🧠 Estado y enlaces del CV
   const [cvSelected, setCvSelected] = useState(null);
+
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const handleCvView = (lang) => {
+    if (isMobile) {
+      window.open(cvLinks[lang], '_blank');
+    } else {
+      setCvSelected(lang);
+    }
+  };
   const baseUrl = import.meta.env.BASE_URL;
   const cvLinks = {
     es: `${baseUrl}CV-Nicolas_Fernandez_Castillo.pdf`,
@@ -98,7 +106,7 @@ const About = () => {
           <div className={styles.cvGrid}>
             {['es', 'en', 'it'].map((lang) => (
               <div key={lang} className={styles.cvCard}>
-                <div className={styles.cvThumbnail} onClick={() => setCvSelected(lang)}>
+                <div className={styles.cvThumbnail} onClick={() => handleCvView(lang)}>
                   <img
                     src={`${baseUrl}CV-Nicolas_Fernandez_Castillo.jpg`}
                     alt={`Miniatura CV`}
@@ -112,15 +120,7 @@ const About = () => {
                 </div>
 
                 <div className={styles.cvActions}>
-                  <button className={styles.cvActionButton}
-                    onClick={() => {
-                      if (isMobile) {
-                        window.open(cvLinks[lang], '_blank');
-                      } else {
-                        setCvSelected(lang);
-                      }
-                    }}
-                  >
+                  <button className={styles.cvActionButton} onClick={() => handleCvView(lang)}>
                     Ver
                   </button>
                   <a
