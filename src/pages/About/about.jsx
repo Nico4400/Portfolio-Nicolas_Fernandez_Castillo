@@ -1,6 +1,9 @@
 import styles from './styles.module.css'
 import { useState } from 'react';
 import { FiDownload } from 'react-icons/fi';
+import { TbTargetArrow } from "react-icons/tb";
+import { IoBulb } from "react-icons/io5";
+import { LuBrain } from "react-icons/lu";
 import avatarImg from '../../../public/ingeniero-de-software.png';
 
 
@@ -9,17 +12,17 @@ const About = () => {
   const cards = [
     {
       title: 'Mi misión',
-      icon: '🎯',
+      icon: <TbTargetArrow />,
       text: 'Crear soluciones tecnológicas intuitivas, escalables y sostenibles que generen impacto positivo, conectando personas, procesos y datos con eficiencia.',
     },
     {
       title: 'Mi visión',
-      icon: '🚀',
+      icon: <IoBulb />,
       text: 'Ser un referente en el desarrollo de productos digitales, combinando ingeniería, creatividad y propósito, construyendo un futuro mejor mediante la innovación.',
     },
     {
       title: 'Mi enfoque',
-      icon: '🧠',
+      icon: <LuBrain />,
       text: 'Me centro en comprender a fondo los desafíos antes de construir soluciones. Aplico pensamiento crítico, diseño centrado en el usuario y metodologías ágiles.',
     },
   ];
@@ -30,9 +33,9 @@ const About = () => {
 
   const baseUrl = import.meta.env.BASE_URL;
   const cvLinks = {
-    es: `${baseUrl}CV - Nicolas Fernadez Castillo.pdf`,
-    en: `${baseUrl}CV - Nicolas Fernadez Castillo - Eng.pdf`,
-    it: `${baseUrl}CV - Nicolas Fernadez Castillo - It.pdf`,
+    es: `${baseUrl}CV - Nicolas Fernandez Castillo.pdf`,
+    en: `${baseUrl}CV - Nicolas Fernandez Castillo - Eng.pdf`,
+    it: `${baseUrl}CV - Nicolas Fernandez Castillo - It.pdf`,
   };
 
   return (
@@ -41,11 +44,11 @@ const About = () => {
         <img src={avatarImg} alt="Avatar" className={styles.avatar} />
         <div className={styles.introText}>
           <h2 className={styles.intro}>
-            ¡Hola! Soy <span className={styles.highlight}>Nico</span>
+            Hola Soy <span className={styles.highlight}>Nico</span>
           </h2>
-          <h2 className={styles.intro}>
+          <h4 className={styles.intro}>
             Ingeniero industrial con orientación en tecnología, programación y ciencia de datos.
-          </h2>
+          </h4>
           <p className={styles.body}>
             Mi propósito es facilitar el cambio y la mejora continua a través de herramientas digitales con soluciones eficientes, innovadoras y sostenibles.
           </p>
@@ -98,7 +101,7 @@ const About = () => {
               <div key={lang} className={styles.cvCard}>
                 <div className={styles.cvThumbnail} onClick={() => setCvSelected(lang)}>
                   <img
-                    src={`${baseUrl}CV - Nicolas Fernadez Castillo.jpg`}
+                    src={`${baseUrl}CV - Nicolas Fernandez Castillo.jpg`}
                     alt={`Miniatura CV`}
                     className={styles.cvImage}
                   />
