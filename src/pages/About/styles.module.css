@@ -12,24 +12,10 @@
   justify-content: center;
 }
 
-/* .avatar {
+.avatarContainer {
+  position: relative;
   width: 170px;
   height: 170px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #00bcd4;
-  box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
-} */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
 }
 
 .avatar {
@@ -38,14 +24,10 @@
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #00bcd4;
+  animation: fadeInUp 0.8s ease-out forwards, glowPulse 2s ease-in-out infinite;
   box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.avatarContainer {
   position: relative;
-  width: 170px;
-  height: 170px;
+  z-index: 2;
 }
 
 .gear1,
@@ -54,6 +36,7 @@
   width: 40px;
   height: 40px;
   opacity: 0.6;
+  z-index: 3;
 }
 
 .gear1 {
@@ -68,6 +51,75 @@
   right: -10px;
   animation: rotateCounter 8s linear infinite;
   color: #00acc1;
+}
+
+/* Partículas */
+.particle1,
+.particle2,
+.particle3 {
+  position: absolute;
+  width: 8px; /* más grandes */
+  height: 8px;
+  background-color: #00e5ff; /* color más brillante */
+  border-radius: 50%;
+  opacity: 0.8; /* más visibilidad */
+  z-index: 1;
+  filter: drop-shadow(0 0 4px #00e5ff);
+}
+
+.particle1 {
+  top: 15%;
+  left: 25%;
+  animation: floatBit 3.5s ease-in-out infinite;
+}
+
+.particle2 {
+  bottom: 10%;
+  right: 30%;
+  animation: floatBit 4.5s ease-in-out infinite;
+}
+
+.particle3 {
+  top: 50%;
+  left: 75%;
+  animation: floatBit 5s ease-in-out infinite;
+}
+
+/* Aura */
+.avatarAura {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 188, 212, 0.12),
+    rgba(0, 188, 212, 0.12) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  animation: scrollAura 6s linear infinite; /* más rápido */
+  filter: drop-shadow(0 0 6px #00e5ff); /* brillo suave */
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 188, 212, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
+  }
 }
 
 @keyframes rotateClockwise {
@@ -87,6 +139,32 @@
     transform: rotate(-360deg);
   }
 }
+
+@keyframes floatBit {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scrollAura {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 -40px;
+  }
+}
+
+
 
 .introText {
   max-width: 600px;

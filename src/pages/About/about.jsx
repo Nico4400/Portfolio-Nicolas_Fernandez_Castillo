@@ -48,13 +48,17 @@ const About = () => {
 
   return (
     <section className={styles.aboutSection}>
-      <div className={styles.introContainer}>
-        {/* <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} /> */}
-
+      <div className={styles.introContainer}>       
         <div className={styles.avatarContainer}>
+          <div className={styles.avatarAura}></div>
           <img src={`${baseUrl}ingeniero-de-software.png`} alt="Avatar" className={styles.avatar} />
+          {/* Engranajes */}
           <BsFillGearFill alt="Engranaje" className={styles.gear2} /> 
           <BsGearWide  alt="Engranaje" className={styles.gear1} />
+          {/* Partículas flotantes */}
+          <span className={styles.particle1}></span>
+          <span className={styles.particle2}></span>
+          <span className={styles.particle3}></span>
         </div>
 
         <div className={styles.introText}>

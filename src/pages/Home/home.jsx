@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
+import avatarImg from '/Avatar01.png';
 
 const sections = [
   {
     title: 'Sobre mí',
     description: 'Conocé mi perfil profesional, formación, valores y lo que me motiva como ingeniero industrial orientado a la tecnología.',
     link: '/about',
-    image: 'https://source.unsplash.com/800x600/?person,technology',
+    image: avatarImg,
   },
   {
     title: 'Proyectos',
