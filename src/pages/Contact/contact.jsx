@@ -1,54 +1,144 @@
-import styles from './styles.module.css'
+import styles from './styles.module.css';
+import avatarImg from '/Avatar01.png';
+import heroBackground from '/fondo_contacto.jpg';
+import { FaEnvelope, FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Contact = () => {
   return (
     <div className={styles.contactContainer}>
-      <h2 className={styles.title}>Contacto</h2>
+      {/* Hero section */}
+      <div className={styles.heroSection}>
+        <img src={heroBackground} alt="Fondo profesional" className={styles.heroBackground} />
 
-      <h4 className={styles.subtitle}>Trabajemos juntos</h4>
+        <div className={styles.heroOverlay}>
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>Hablemos</h1>
+            <h2 className={styles.heroSubtitle}>Contacto</h2>
+            <img src={avatarImg} alt="Avatar" className={styles.heroAvatar} />
+          </div>
+        </div>
+      </div>
 
-      <h3>Asesoría para Empresas y Clientes Particulares</h3>
+      <div className={styles.divider} />
 
-      <p className={styles.contactText}>
-        Si estás buscando llevar tu proyecto o empresa al siguiente nivel con soluciones digitales eficientes y a medida, ¡estoy para ayudarte!
-        <br /><br />
-        Soy Nicolás Fernández Castillo, ingeniero industrial con fuerte orientación en tecnología, programación y ciencia de datos. Me especializo en desarrollar herramientas y soluciones que optimicen procesos, faciliten la toma de decisiones y generen valor real, ya sea para equipos de trabajo, negocios o proyectos personales.
-        <br /><br />
-        Estoy abierto a colaborar con empresas, emprendedores o particulares que busquen innovación, análisis y claridad en sus procesos. Ya sea que necesites asesoramiento, desarrollo a medida o simplemente quieras compartir una idea, te invito a escribirme.
-      </p>
+      {/* Presentación */}
+      <section className={styles.presentationSection}>
+        <div className={styles.presentationText}>
+          <h3>Asesoría para Empresas y Clientes Particulares</h3>
+          <p>
+            Si estás buscando llevar tu proyecto o empresa al siguiente nivel con soluciones digitales eficientes y a medida, ¡estoy para ayudarte!
+          </p>
+          <p>
+            Soy <strong>Nicolás Fernández Castillo</strong>, ingeniero industrial con fuerte orientación en tecnología, programación y ciencia de datos. Me especializo en desarrollar herramientas y soluciones que optimicen procesos, faciliten la toma de decisiones y generen valor real, ya sea para equipos de trabajo, negocios o proyectos personales.
+          </p>
+          <p>
+            Estoy abierto a colaborar con empresas, emprendedores o particulares que busquen innovación, análisis y claridad en sus procesos. Ya sea que necesites asesoramiento, desarrollo a medida o simplemente quieras compartir una idea, te invito a escribirme.
+          </p>
+        </div>
 
-      <h3 className={styles.formHeader}>Escríbeme</h3>
+        {/* Tarjetas */}
+        <div className={styles.cardContainer}>
+          <div className={styles.card}>
+            <i className="fas fa-user" /> {/* Cliente particular */}
+            <h4>Clientes Particulares</h4>
+            <p>Proyectos personales, automatización, análisis de datos y soluciones digitales a medida.</p>
+          </div>
+          <div className={styles.card}>
+            <i className="fas fa-building" /> {/* Empresas */}
+            <h4>Empresas</h4>
+            <p>Optimización de procesos, dashboards, desarrollo de herramientas internas y consultoría.</p>
+          </div>
+        </div>
+      </section>
 
-      <p className={styles.contactText}>
-        ¡No dudes en ponerte en contacto! Si tenés alguna pregunta o inquietud sobre mis servicios, completá el formulario y estaré encantado de ayudarte. ¡Espero leerte pronto!
-      </p>
+      <div className={styles.divider} />
 
-      <form className={styles.form}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Tu nombre"
-          className={styles.input}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Tu correo electrónico"
-          className={styles.input}
-        />
-        <textarea
-          name="message"
-          placeholder="Escribe tu mensaje..."
-          className={styles.textarea}
-        ></textarea>
-        <button type="submit" className={styles.button}>Enviar</button>
-      </form>
+      {/* Escríbeme */}
+      <section className={styles.contactSection}>
+        <div className={styles.contactIntro}>
+          <h3>Escríbeme</h3>
+          <p>
+            ¡No dudes en ponerte en contacto! Si tenés alguna pregunta o inquietud sobre mis servicios, completá el formulario y estaré encantado de ayudarte. ¡Espero leerte pronto!
+          </p>
+        </div>
+
+        {/* Formulario */}
+        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            className={styles.input}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu correo electrónico"
+            className={styles.input}
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Escribe tu mensaje..."
+            className={styles.textarea}
+            rows="6"
+            required
+          ></textarea>
+          <button type="submit" className={styles.button}>Enviar</button>
+        </form>
+
+      </section>
+
+      {/* Footer de contacto */}
+      <section className={styles.contactFooter}>
+        <div className={styles.contactExtras}>
+          {/* Avatar */}
+          <div className={styles.avatarContainer}>
+            <img
+              src= {avatarImg}
+              alt="Avatar de Nicolás"
+              className={styles.avatar}
+            />
+            <p>¡Gracias por visitar!</p>
+          </div>
+
+          {/* Mapa */}
+          <div className={styles.mapContainer}>
+            <iframe
+              title="Ubicación"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31123.7437366798!2d-57.96745570433566!3d-34.919482716820255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f0085a1%3A0xbcfc44f0547312e3!2sLa%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1748020240273!5m2!1ses!2sar"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          {/* Íconos */}
+          <div className={styles.socialIcons}>
+            <a href="mailto:nico.fernandezcastillo@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+              <FaEnvelope />
+            </a>
+            <a href="www.linkedin.com/in/nicolás-fernández-castillo/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <FaLinkedin />
+            </a>
+            <a href="https://github.com/Nico4400" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <FaGithub />
+            </a>
+            <a href="https://wa.me/542215651273" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+              <FaWhatsapp />
+            </a>
+          </div>
+        </div>
+      </section>
+
+
     </div>
-  )
-}
+  );
+};
 
-export default Contact
-
+export default Contact;
 
 
 
