@@ -3,8 +3,40 @@ import avatarImg from '/Avatar01.png';
 import heroBackground from '/fondo_contacto.jpg';
 import { FaEnvelope, FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import emailjs from '@emailjs/browser';
+import { useRef, useState } from 'react';
 
 const Contact = () => {
+  // emailjs
+  const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
+
+
+  const formRef = useRef();
+  const [isSent, setIsSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+
+const sendEmail = (e) => {
+  e.preventDefault();
+  setIsLoading(true); // activar spinner
+
+  emailjs
+    .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+    .then(() => {
+      setIsSent(true);
+      formRef.current.reset();
+    })
+    .catch((error) => {
+      console.error('Error al enviar el formulario:', error);
+      alert("Hubo un error al enviar el mensaje.");
+    })
+    .finally(() => {
+      setIsLoading(false); // ocultar spinner
+    });
+  };
+
   return (
     <div className={styles.contactContainer}>
       {/* Hero section */}
@@ -64,7 +96,7 @@ const Contact = () => {
         </div>
 
         {/* Formulario */}
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.form} ref={formRef} onSubmit={sendEmail}>
           <input
             type="text"
             name="name"
@@ -86,8 +118,24 @@ const Contact = () => {
             rows="6"
             required
           ></textarea>
-          <button type="submit" className={styles.button}>Enviar</button>
+
+          <button type="submit" className={styles.button} disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className={styles.spinner}></span> Enviando...
+              </>
+            ) : (
+              'Enviar'
+            )}
+          </button>
         </form>
+
+        {/* ✅ Mensaje de confirmación */}
+        {isSent && (
+          <p className={styles.confirmationMessage}>
+            ¡Mensaje enviado correctamente!
+          </p>
+        )}
 
       </section>
 
