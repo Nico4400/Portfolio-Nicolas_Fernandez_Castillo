@@ -59,7 +59,7 @@ const sendEmail = (e) => {
         <div className={styles.presentationText}>
           <h3>Asesoría para Empresas y Clientes Particulares</h3>
           <p>
-            Si estás buscando llevar tu proyecto o empresa al siguiente nivel con soluciones digitales eficientes y a medida, ¡estoy para ayudarte!
+            Si estás buscando llevar tu proyecto o empresa al siguiente nivel con soluciones digitales eficientes y a medida, ¡estoy para ayudarte!.
           </p>
           <p>
             Soy <strong>Nicolás Fernández Castillo</strong>, ingeniero industrial con fuerte orientación en tecnología, programación y ciencia de datos. Me especializo en desarrollar herramientas y soluciones que optimicen procesos, faciliten la toma de decisiones y generen valor real, ya sea para equipos de trabajo, negocios o proyectos personales.
