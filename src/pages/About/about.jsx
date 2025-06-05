@@ -55,10 +55,6 @@ const About = () => {
           {/* Engranajes */}
           <BsFillGearFill alt="Engranaje" className={styles.gear2} /> 
           <BsGearWide  alt="Engranaje" className={styles.gear1} />
-          {/* Partículas flotantes */}
-          <span className={styles.particle1}></span>
-          <span className={styles.particle2}></span>
-          <span className={styles.particle3}></span>
         </div>
 
         <div className={styles.introText}>
@@ -142,7 +138,7 @@ const About = () => {
                     rel="noopener noreferrer"
                     className={styles.cvActionButton}
                   >
-                    <FiDownload size={18} />
+                    <FiDownload size={18} aria-hidden="true" />
                   </a>
                 </div>
               </div>

@@ -1,7 +1,18 @@
+:root {
+  
+    --primary-color: #00bcd4;
+    --secondary-color: #0097a7;
+    --text-light: #e0e0e0;
+    --text-medium: #ccc;
+    --font-inter: 'Inter', sans-serif;
+    --accent-glow-color: #00e5ff; /* Color para brillos y detalles como el aura */
+  }
+
+
 .aboutSection {
   padding: 4rem 2rem;
   background-color: #121212;
-  color: #ffffff;
+  color: #fff;
 }
 
 .introContainer {
@@ -12,180 +23,178 @@
   justify-content: center;
 }
 
+/* Avatar Container */
 .avatarContainer {
-  position: relative;
-  width: 170px;
-  height: 170px;
+    position: relative;
+    width: 170px;
+    height: 170px;
+    flex-shrink: 0; /* Asegura que no se encoja en layouts flexibles */
+    /* Agrupar animaciones relacionadas con el contenedor si hubiera */
 }
 
+/* Avatar Image */
 .avatar {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #00bcd4;
-  animation: fadeInUp 0.8s ease-out forwards, glowPulse 2s ease-in-out infinite;
-  box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
-  position: relative;
-  z-index: 2;
+    width: 100%; /* Ocupa el 100% del avatarContainer */
+    height: 100%; /* Ocupa el 100% del avatarContainer */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color); /* Usar variable */
+    box-shadow: 0 0 12px rgba(0, 188, 212, 0.4); /* Usar rgba con primary-color si es posible, o directamente el color */
+    position: relative;
+    z-index: 2; /* Para que el avatar esté por encima del aura */
+    /* Animaciones del avatar */
+    animation:
+        fadeInUp 0.8s ease-out forwards,
+        glowPulse 2s ease-in-out infinite;
 }
 
+/* Gears */
 .gear1,
 .gear2 {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  opacity: 0.6;
-  z-index: 3;
+    position: absolute;
+    width: 45px; /* Ligeramente más grandes para consistencia con mejoras anteriores */
+    height: 45px;
+    opacity: 0.7; /* Más visibles */
+    z-index: 3; /* Para que los engranajes estén por encima del avatar */
+    color: var(--secondary-color); /* Usar variable para color */
+    filter: drop-shadow(0 0 3px rgba(0, 188, 212, 0.5)); /* Sombra suave, usar rgba con primary-color si es posible */
 }
 
 .gear1 {
-  top: -1px;
-  left: -10px;
-  animation: rotateClockwise 6s linear infinite;
-  color: #00acc1;
+    top: -5px; /* Posición ajustada */
+    left: -15px; /* Posición ajustada */
+    animation: rotateClockwise 6s linear infinite;
 }
 
 .gear2 {
-  bottom: -2px;
-  right: -10px;
-  animation: rotateCounter 8s linear infinite;
-  color: #00acc1;
-}
-
-/* Partículas */
-.particle1,
-.particle2,
-.particle3 {
-  position: absolute;
-  width: 8px; /* más grandes */
-  height: 8px;
-  background-color: #00e5ff; /* color más brillante */
-  border-radius: 50%;
-  opacity: 0.8; /* más visibilidad */
-  z-index: 1;
-  filter: drop-shadow(0 0 4px #00e5ff);
-}
-
-.particle1 {
-  top: 15%;
-  left: 25%;
-  animation: floatBit 3.5s ease-in-out infinite;
-}
-
-.particle2 {
-  bottom: 10%;
-  right: 30%;
-  animation: floatBit 4.5s ease-in-out infinite;
-}
-
-.particle3 {
-  top: 50%;
-  left: 75%;
-  animation: floatBit 5s ease-in-out infinite;
+    bottom: -5px; /* Posición ajustada */
+    right: -15px; /* Posición ajustada */
+    animation: rotateCounter 8s linear infinite;
 }
 
 /* Aura */
 .avatarAura {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 188, 212, 0.12),
-    rgba(0, 188, 212, 0.12) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  animation: scrollAura 6s linear infinite; /* más rápido */
-  filter: drop-shadow(0 0 6px #00e5ff); /* brillo suave */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 188, 212, 0.1),
+        rgba(0, 188, 212, 0.1) 2px,
+        transparent 2px,
+        transparent 8px
+    );
+    filter: drop-shadow(0 0 8px var(--accent-glow-color)); /* Usar variable para el color de brillo */
+    z-index: 1; /* Detrás del avatar */
+    animation: scrollAura 8s linear infinite;
 }
 
-/* Animaciones */
+/* -------------------- */
+/* Global Animations Section */
+/* -------------------- */
+
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(0, 188, 212, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
-  }
+    0% {
+        box-shadow: 0 0 8px rgba(0, 188, 212, 0.3), 0 0 16px rgba(0, 188, 212, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(0, 188, 212, 0.6), 0 0 24px rgba(0, 188, 212, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 8px rgba(0, 188, 212, 0.3), 0 0 16px rgba(0, 188, 212, 0.2);
+    }
 }
 
 @keyframes rotateClockwise {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes rotateCounter {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes floatBit {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-10px) scale(1.2);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
 }
 
 @keyframes scrollAura {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 -40px;
-  }
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
 }
 
-
-
+/* Intro Text */
 .introText {
-  max-width: 600px;
+    max-width: 650px; /* Ancho máximo para la legibilidad del texto */
+    text-align: left; /* Alineación a la izquierda para un look más profesional */
+    /* En móviles, esto se centrará con el media query que ya tenemos en .introContainer */
 }
 
 .intro {
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.4;
+    font-size: 2.2rem; /* Tamaño de fuente más grande para el "Hola, soy Nico" */
+    font-weight: 700; /* Negrita para destacar el nombre */
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    color: var(--text-light); /* Color de texto claro */
+}
+
+/* Este estilo se aplica al <h3> que describe tu rol */
+.intro:nth-child(2) {
+    font-size: 1.7rem; /* Tamaño adecuado para el eslogan/descripción de rol */
+    font-weight: 500; /* Menos negrita que el nombre, pero aún destacado */
+    color: var(--primary-color); /* Color de destaque para tu especialidad */
+    margin-bottom: 1.5rem; /* Espacio debajo del eslogan */
 }
 
 .highlight {
-  color: #00bcd4;
-  position: relative;
+    color: var(--primary-color); /* Para la palabra "Nico" */
+    position: relative;
+    /* Puedes añadir más estilos si quieres un efecto diferente en el highlight */
 }
 
 .body {
-  font-size: 1.1rem;
-  color: #cccccc;
-  margin-top: 1rem;
-  line-height: 1.6;
+    font-size: 1.1rem; /* Tamaño de fuente para el párrafo principal */
+    color: var(--text-medium); /* Un color ligeramente más suave para el cuerpo del texto */
+    margin-top: 1rem;
+    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
+}
+
+
+/* Media Queries (para asegurar responsividad) */
+@media (max-width: 992px) {
+    .introText {
+        text-align: center; /* Centrar en tablets */
+        max-width: 100%; /* Permitir que ocupe más ancho en tablets */
+    }
+    .intro {
+        font-size: 2rem;
+    }
+    .intro:nth-child(2) {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .intro {
+        font-size: 1.8rem;
+    }
+    .intro:nth-child(2) {
+        font-size: 1.3rem;
+    }
+    .body {
+        font-size: 1rem;
+    }
 }
 
 .divider {
@@ -340,7 +349,9 @@
   width: 100%;
   height: 100%;
   object-fit:initial;
-  filter: blur(0.4px)
+  background-color: #333;
+  filter: blur(0.4px);
+  filter: brightness(0.7);
 }
 
 .cvOverlay {
