@@ -1,15 +1,22 @@
-/* El contenedor principal de tu app ya no limita el ancho */
-#root {
+/* El contenedor principal de tu app ya no limita el ancho si #root no lo hace */
+/* #root {
   margin: 0;
   padding: 0;
-}
+} */
+/* Nota: Se ha comentado la regla #root que tenías si no está en App.css.
+   Si tu #root está en index.css o en otro lugar, asegúrate de que no tenga paddings/margins externos.
+   Si tu #root no tiene estilos, esto no es un problema. */
 
-/* Solo limitamos el ancho del contenido principal */
+
+/* Solo limitamos el ancho del contenido principal y lo centramos */
 .main-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
+  max-width: 1280px; /* Limita el ancho del contenido de las páginas */
+  margin: 0 auto;    /* Centra el contenido horizontalmente */
+  padding: 1rem;     /* Añade padding interno al contenido */
   text-align: center;
+  /* Asegura que el main-content ocupe el 100% del espacio disponible
+     hasta el max-width, sin exceder el viewport. */
+  width: 100%;
 }
 
 /* Estilos demo que tenías, podés dejar o quitar según necesidad */

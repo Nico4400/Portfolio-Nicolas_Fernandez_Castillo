@@ -1,40 +1,97 @@
+/* Variables CSS (Asegúrate de que estas estén definidas globalmente en :root) */
+:root {
+    --primary-color: #00bcd4;
+    --secondary-color: #0097a7;
+    --text-white: #fff;
+    --background-dark-nav-footer: #111; /* Unificando el color de fondo de nav y footer */
+    --footer-padding-y: 20px;
+    --footer-icon-size: 20px;
+    --footer-icon-gap: 20px;
+    --footer-text-font-size: 14px;
+    --footer-container-gap: 15px;
+    --max-width-container: 1200px;
+}
+
+/* Footer Section */
 .footer {
-    width: 100vw;
-    background-color: #111;
-    color: white;
-    padding: 20px 0;
+    width: 100%; /* Usar 100% en lugar de 100vw para evitar scrollbar horizontal en algunos casos */
+    background-color: var(--background-dark-nav-footer);
+    color: var(--text-white);
+    padding: var(--footer-padding-y) 0;
     text-align: center;
-    position: relative;
-    left: 0;
-  }
-  
-  .container {
-    max-width: 1200px;
+    position: relative; /* Mantener si tiene algún uso específico, sino podría ser estático */
+    left: 0; /* No es necesario si width es 100% y position es relative/static, pero lo mantenemos si lo quieres */
+}
+
+.container {
+    max-width: var(--max-width-container);
     margin: 0 auto;
     padding: 0 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-  }
-  
-  .icons {
+    gap: var(--footer-container-gap);
+}
+
+.icons {
     display: flex;
-    gap: 20px;
-  }
-  
-  .icons a {
-    color: white;
-    font-size: 20px;
-    transition: color 0.3s ease;
-  }
-  
-  .icons a:hover {
-    color: #00bcd4;
-  }
-  
-  .text {
+    gap: var(--footer-icon-gap);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.icons a {
+    color: var(--text-white);
+    font-size: var(--footer-icon-size);
+    transition: color 0.3s ease, transform 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.text {
     margin: 0;
-    font-size: 14px;
-  }
+    font-size: var(--footer-text-font-size);
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer {
+        padding: 15px 0;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .icons {
+        gap: 15px;
+    }
+
+    .icons a {
+        font-size: 18px;
+    }
+
+    .text {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .icons {
+        gap: 12px;
+    }
+    .icons a {
+        font-size: 16px;
+    }
+    .text {
+        font-size: 12px;
+    }
+}
   

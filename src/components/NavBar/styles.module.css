@@ -1,121 +1,202 @@
+/* Variables CSS (Asegúrate de que estas estén definidas globalmente en :root) */
+:root {
+    --primary-color: #00bcd4;
+    --secondary-color: #0097a7;
+    --text-light: #e0e0e0;
+    --text-white: #fff;
+    --background-dark-main: #0d0d0d; /* Principal body background */
+    --background-nav: #111; /* Color de fondo de la barra de navegación */
+    --nav-padding-y: 5px; /* Vertical padding de la nav */
+    --nav-padding-x: 30px; /* Horizontal padding de la nav */
+    --nav-height: 80px; /* Altura fija de la barra de navegación */
+    --nav-link-gap: 20px; /* Espacio entre links en desktop */
+    --mobile-nav-width: 40%; /* Ancho del menú móvil */
+    --mobile-nav-background-opacity: 0.98; /* Opacidad del background del menú móvil */
+    --mobile-nav-blur: 4px; /* Filtro de desenfoque del menú móvil */
+    --burger-line-width: 25px;
+    --burger-line-height: 3px;
+    --burger-line-gap: 5px;
+    --logo-height: 60px; /* Altura del logo */
+}
+
 /* General resets */
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
+html {
+    scroll-behavior: smooth; /* Para el scroll de la página */
+}
+
+body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-  }
-  
-  .nav {
+    overflow-x: hidden; /* Evitar scroll horizontal */
+    /* Cuando el menú móvil está abierto, se añadirá overflow: hidden; al body con JS */
+}
+
+/* Navbar container */
+.nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #111;
-    color: #fff;
-    padding: 5px 30px;
+    height: var(--nav-height); /* Altura fija */
+    background-color: var(--background-nav);
+    color: var(--text-white);
+    padding: var(--nav-padding-y) var(--nav-padding-x);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-  }
-  
-  /* Logo */
-  .logoImg {
-    height: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil para la nav */
+}
+
+/* Logo */
+.logoImg {
+    height: var(--logo-height);
     width: auto;
     border-radius: 50%;
-  }
-  
-  .logoLink {
+    transition: transform 0.2s ease-in-out; /* Animación en hover */
+}
+
+.logoLink {
     cursor: pointer;
-  }
-  
-  /* Nav list base (desktop) */
-  .navList {
+}
+
+.logoLink:hover .logoImg {
+    transform: scale(1.05); /* Pequeña escala en hover */
+}
+
+/* Nav list base (desktop) */
+.navList {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: var(--nav-link-gap);
     margin: 0;
     padding: 0;
-  }
-  
-  .link,
-  .activeLink {
-    color: #fff;
+}
+
+.link,
+.activeLink {
+    color: var(--text-white);
     text-decoration: none;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out, font-weight 0.2s ease-in-out;
     display: flex;
     align-items: center;
     gap: 3px;
+    padding: 5px 0; /* Añadir padding para que la línea inferior se vea mejor */
     cursor: pointer;
-  }
-  
-  .link:hover {
-    color: #00bcd4;
-  }
-  
-  .activeLink {
-    color: #00bcd4;
+}
+
+.link:hover {
+    color: var(--primary-color);
+}
+
+.activeLink {
+    color: var(--primary-color);
     font-weight: bold;
-    border-bottom: 2px solid #00bcd4;
-  }
-  
-  /* Ícono dentro del link */
-  .icon {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Ícono dentro del link */
+.icon {
     font-size: 1rem;
-    margin-right: 4px;
+    margin-right: 4px; /* Un poco más de espacio */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  /* Burger button */
-  .burger {
-    display: none;
+}
+
+/* Burger button */
+.burger {
+    display: none; /* Oculto por defecto en desktop */
     flex-direction: column;
-    gap: 5px;
+    gap: var(--burger-line-gap);
     cursor: pointer;
-    z-index: 1100;
-  }
-  
-  .burgerLine {
-    width: 25px;
-    height: 3px;
-    background-color: white;
+    z-index: 1100; /* Asegura que esté por encima del menú móvil */
+    background: none; /* Eliminar estilo de botón por defecto */
+    border: none; /* Eliminar estilo de botón por defecto */
+    padding: 0; /* Eliminar padding de botón */
+}
+
+.burgerLine {
+    width: var(--burger-line-width);
+    height: var(--burger-line-height);
+    background-color: var(--text-white);
     border-radius: 3px;
-  }
-  
-  /* Responsive nav */
-  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out; /* Animación para el icono de hamburguesa */
+}
+
+/* Animación del botón de hamburguesa al abrir */
+.burger.open .burgerLine:nth-child(1) {
+    transform: translateY(calc(var(--burger-line-gap) + var(--burger-line-height))) rotate(45deg);
+}
+
+.burger.open .burgerLine:nth-child(2) {
+    opacity: 0; /* Desaparece la línea del medio */
+}
+
+.burger.open .burgerLine:nth-child(3) {
+    transform: translateY(calc(-1 * (var(--burger-line-gap) + var(--burger-line-height)))) rotate(-45deg);
+}
+
+/* Overlay para menú móvil */
+.menuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Sutil fondo oscuro para el overlay */
+    z-index: 999; /* Detrás del menú móvil pero encima del contenido */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Responsive nav */
+@media (max-width: 768px) {
+    .nav {
+        padding: 10px 20px; /* Ajustar padding de nav para móvil */
+        height: var(--nav-height); /* Mantener altura consistente */
+    }
+
+    .logoImg {
+        height: 50px; /* Logo un poco más pequeño en móvil */
+    }
+
     .burger {
-      display: flex;
+        display: flex; /* Mostrar botón de hamburguesa */
     }
-  
+
     .navList {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100vh;
-      width: 40%;
-      background-color: rgba(17, 17, 17, 0.98);
-      backdrop-filter: blur(4px);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: right 0.3s ease-in-out;
-      z-index: 1000;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Oculto por defecto, fuera de la pantalla */
+        height: 100vh;
+        width: var(--mobile-nav-width);
+        background-color: rgba(17, 17, 17, var(--mobile-nav-background-opacity));
+        backdrop-filter: blur(var(--mobile-nav-blur));
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        padding-top: var(--nav-height); /* Ajustar padding superior para que no se superponga con la nav */
+        overflow-y: auto; /* Permitir scroll si el menú es muy largo */
     }
-  
+
     .showMenu {
-      right: 0;
+        right: 0; /* Muestra el menú móvil */
     }
-  
+
     .navList li {
-      margin: 15px 0;
+        margin: 15px 0; /* Espacio entre ítems de menú en móvil */
     }
-  }
-  
+
+    .link,
+    .activeLink {
+        font-size: 1.2rem; /* Tamaño de fuente más grande para links en móvil */
+        padding: 10px 20px; /* Padding para hacer clic más fácil */
+        border-bottom: none; /* Eliminar línea inferior por defecto */
+    }
+
+    .activeLink {
+        border-bottom: 2px solid var(--primary-color); /* Mantener línea solo en activo */
+    }
+}

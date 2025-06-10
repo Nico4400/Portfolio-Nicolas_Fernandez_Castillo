@@ -1,0 +1,341 @@
+/* Variables CSS (Asegúrate de que estén definidas globalmente en :root) */
+:root {
+    --primary-color: #00bcd4;
+    --secondary-color: #0097a7;
+    --text-light: #e0e0e0;
+    --text-medium: #ccc;
+    --text-white: #fff;
+    --background-dark-main: #0d0d0d;
+    --background-section-1: #121212; /* Fondo para la sección de experiencia */
+    --background-card: #1e1e1e; /* Fondo para las tarjetas de experiencia */
+    --border-color: #00bcd4; /* Color para bordes y línea de tiempo */
+    --card-border-radius: 1rem; /* Radio de borde para las tarjetas */
+    --padding-section: 4rem 2rem;
+    --divider-height: 1px;
+}
+
+/* Base Section Styling */
+.experienceSection {
+    background-color: var(--background-section-1);
+    color: var(--text-light);
+    padding: var(--padding-section);
+    text-align: center;
+    overflow-x: hidden; /* Asegurar que no haya scroll horizontal si hay elementos fuera */
+}
+
+.sectionTitle {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.sectionSubtitle {
+    font-size: 1.2rem;
+    color: var(--text-medium);
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Timeline Container */
+.timelineContainer {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0; /* Padding vertical para la línea de tiempo */
+}
+
+/* La línea vertical central */
+.timelineContainer::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--border-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px; /* Centrar la línea */
+    z-index: 0;
+}
+
+/* Item de la línea de tiempo (izquierda/derecha) */
+.timelineItem {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%; /* Ocupa la mitad del ancho del contenedor */
+    display: flex;
+    align-items: center; /* Alinea icono y tarjeta */
+    margin-bottom: 40px; /* Espacio entre ítems */
+}
+
+/* Posicionamiento a la izquierda */
+.timelineItem.left {
+    left: 0;
+    justify-content: flex-end; /* Alinea el contenido a la derecha dentro de su mitad */
+}
+
+/* Posicionamiento a la derecha */
+.timelineItem.right {
+    left: 50%;
+    padding-left: 70px; /* Espacio para el icono */
+}
+
+/* Ícono/Logo en la línea de tiempo */
+.timelineIconContainer {
+    position: absolute;
+    width: 60px; /* Tamaño del círculo del icono */
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 3px solid var(--text-white);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.timelineItem.left .timelineIconContainer {
+    right: -30px; /* Posiciona a la mitad de la línea */
+}
+
+.timelineItem.right .timelineIconContainer {
+    left: -30px; /* Posiciona a la mitad de la línea */
+}
+
+.timelineLogo {
+    width: 80%; /* Ajuste para el logo dentro del círculo */
+    height: 80%;
+    object-fit: contain; /* Para que el logo no se recorte */
+    border-radius: 50%; /* Para que los logos redondos se vean bien */
+    filter: brightness(0.95); /* Suave brillo para que resalte */
+}
+
+.timelineGenericIcon {
+    color: var(--text-white);
+    font-size: 2rem;
+    display: flex; /* Para centrar el icono */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tarjeta de Experiencia */
+.timelineCard {
+    background-color: var(--background-card);
+    padding: 1.5rem 2rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: calc(100% - 60px); /* Ancho de la tarjeta menos el espacio del icono */
+    text-align: left; /* Alineación del texto dentro de la tarjeta */
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timelineCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+}
+
+.timelineItem.left .timelineCard {
+    margin-right: 30px; /* Espacio entre tarjeta y icono */
+}
+
+.timelineItem.right .timelineCard {
+    margin-left: 30px; /* Espacio entre tarjeta y icono */
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.cardSubtitle {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    margin-bottom: 0.8rem;
+}
+
+.cardBrief {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Botón de expandir/contraer */
+.expandButton {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    margin-top: 1rem; /* Espacio superior */
+}
+
+.expandButton:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.expandButton svg {
+    font-size: 1.1rem;
+}
+
+.expandButtonText {
+    font-size: 0.9rem;
+}
+
+
+/* Detalles expandibles */
+.cardDetails {
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transición para expandir */
+    opacity: 0;
+    padding-top: 0; /* Sin padding cuando está cerrado */
+}
+
+.cardDetails.expanded {
+    max-height: 500px; /* Suficiente altura para la mayoría de los contenidos, ajustar si es necesario */
+    opacity: 1;
+    padding-top: 1rem; /* Padding cuando está expandido */
+    border-top: 1px solid rgba(0, 188, 212, 0.1); /* Separador sutil */
+    margin-top: 1rem;
+}
+
+.cardDetails ul {
+    list-style: none; /* Eliminar viñetas por defecto */
+    padding: 0;
+    margin: 0;
+    color: var(--text-medium);
+}
+
+.cardDetails li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.cardDetails li::before {
+    content: '•'; /* Viñeta personalizada */
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .timelineContainer::after {
+        left: 30px; /* Mueve la línea al lado izquierdo en pantallas medianas */
+        margin-left: 0;
+    }
+
+    .timelineItem {
+        width: 100%; /* Ocupa todo el ancho */
+        padding-left: 70px; /* Asegura espacio para el icono */
+        margin-bottom: 30px;
+    }
+
+    .timelineItem.left,
+    .timelineItem.right {
+        left: 0; /* Todos los ítems a la izquierda */
+        justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    }
+
+    .timelineItem.left .timelineIconContainer,
+    .timelineItem.right .timelineIconContainer {
+        left: 0; /* Posiciona los iconos a la izquierda */
+        transform: translateX(-50%); /* Centra el icono en el borde */
+        /* right: auto; */
+    }
+
+    .timelineCard {
+        width: calc(100% - 60px); /* Ajuste de ancho de la tarjeta */
+        margin-left: 30px; /* Espacio entre icono y tarjeta */
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .sectionTitle {
+        font-size: 2.2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .timelineIconContainer {
+        width: 50px; /* Iconos más pequeños en móviles */
+        height: 50px;
+    }
+
+    .timelineLogo {
+        width: 75%;
+        height: 75%;
+    }
+
+    .timelineGenericIcon {
+        font-size: 1.7rem;
+    }
+
+    .timelineItem {
+        padding-left: 60px; /* Ajuste para el nuevo tamaño del icono */
+    }
+
+    .timelineCard {
+        padding: 1rem 1.2rem;
+        width: calc(100% - 50px);
+        margin-left: 20px;
+    }
+
+    .cardTitle {
+        font-size: 1.3rem;
+    }
+
+    .cardSubtitle {
+        font-size: 0.9rem;
+    }
+
+    .cardBrief {
+        font-size: 0.85rem;
+    }
+
+    .expandButton {
+        padding: 0.4rem 0.8rem;
+        gap: 6px;
+    }
+
+    .expandButton svg {
+        font-size: 0.9rem;
+    }
+
+    .expandButtonText {
+        font-size: 0.8rem;
+    }
+
+    .cardDetails li {
+        font-size: 0.85rem;
+    }
+}
