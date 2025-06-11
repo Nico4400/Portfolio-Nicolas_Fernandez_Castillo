@@ -139,13 +139,13 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { FaBriefcase, FaGraduationCap, FaBullhorn, FaPlus, FaMinus } from 'react-icons/fa';
 
-
+// Definición de tus datos de experiencia (se mantiene igual, asumiendo que los logos están en public/logos/)
 const experienceData = [
     {
         id: 1,
         type: "Trabajo",
         organization: "Instituto de la Vivienda PBA - Subsecretaría de Planificación de Desarrollo Urbano y Vivienda.",
-        logo: "/logos/logo_ministerio.svg", // Asumiendo que esta es la ruta correcta
+        logo: "/logos/logo_ministerio.svg",
         position: "Control Interno",
         period: "2021 - Actualidad",
         brief: "Control de planillas automatizadas para detectar errores en el manejo de los usuarios, optimizando la comunicación interna y externa.",
@@ -201,10 +201,9 @@ const experienceData = [
         id: 4,
         type: "Trabajo",
         organization: "Big Sky Resort, Montana (MT).",
-        logo: "/BigSky.png", // Asumiendo que esta es la ruta correcta
+        logo: "/logos/BigSky.png", // Ya corregido
         position: "Lift Operator (ascensorista de telesquíes)",
         period: "Dic. 2011 - Mar. 2012",
-        // CORREGIDO: Brief para que refleje la experiencia de Lift Operator
         brief: "Responsable de la operación segura y eficiente de telesquíes, garantizando la seguridad de los usuarios y el mantenimiento operativo.",
         descriptionPoints: [
             "Responsable de la operación segura y eficiente de los elevadores de sillas de montaña y sus usuarios.",
@@ -216,7 +215,7 @@ const experienceData = [
         id: 5,
         type: "Educación",
         organization: "Universidad Nacional de la Plata - Facultad de Ingeniería. (UNLP)",
-        logo: "/unlp_ing2.png", // Asumiendo que esta es la ruta correcta
+        logo: "/logos/unlp_ing2.png", // Ya corregido
         position: "Ingeniero Industrial",
         period: "2009 - 2019",
         brief: "Formación integral en optimización de procesos, gestión de proyectos y toma de decisiones, con una base sólida en análisis cuantitativo para la resolución de problemas complejos.",
@@ -236,9 +235,9 @@ const experienceData = [
         id: 6,
         type: "Educación",
         organization: "Instituto Cultural Itálico Leonardo DaVinci La Plata.",
-        logo: "/italiana2.png", // Asumiendo que esta es la ruta correcta
+        logo: "/logos/italiana2.png", // Ya corregido
         position: "Bachiller en Ciencias Naturales",
-        period: "2006 - 2008", // CORREGIDO: Asumiendo años de secundaria/polimodal
+        period: "2006 - 2008",
         brief: "Obtención del título de Bachiller en Ciencias Naturales con un promedio general destacado, desarrollando una sólida base en ciencias exactas y habilidades de investigación.",
         descriptionPoints: [
             "Estudios Internacionales: Licenza Media / Esame di Stato, Maturitá.",
@@ -250,11 +249,11 @@ const experienceData = [
     },
     {
         id: 7,
-        type: "Educación", // o "Certificación", "Curso"
+        type: "Educación",
         organization: "CoderHouse",
-        // logo: "/logos/logo_coderhouse.svg", // Añadir logo de CoderHouse si lo tienes
+        logo: "/logos/logo_coderhouse.svg", // Placeholder, asegúrate de tener este archivo
         position: "Desarrollo Full Stack",
-        period: "2023 - 2024", // Asumo un período más actual para un curso Full Stack
+        period: "2023 - 2024",
         brief: "Formación intensiva en desarrollo web front-end y back-end, con enfoque en tecnologías modernas y metodologías ágiles.",
         descriptionPoints: [
             "Dominio de tecnologías Front-End: HTML5, CSS3, JavaScript (ES6+), React.js, Vite.",
@@ -268,8 +267,8 @@ const experienceData = [
     {
         id: 8,
         type: "Emprendimiento",
-        organization: "Nutrimas (anteriormente CANEVIANDAS)", // Aclarar si hay un cambio de nombre
-        logo: "/logo_nutrimas.png", // Asumiendo que esta es la ruta correcta
+        organization: "Nutrimas (anteriormente CANEVIANDAS)",
+        logo: "/logos/logo_nutrimas.png", // Ya corregido
         position: "Co-fundador / Analista de Negocio",
         period: "2016 - 2019",
         brief: "Lideré el estudio de viabilidad y la estrategia comercial de un microemprendimiento de alimentación, aplicando principios de ingeniería y ciencia de datos.",
@@ -284,14 +283,12 @@ const experienceData = [
 ];
 
 const Experience = () => {
-    // Estado para controlar qué tarjeta está expandida
     const [expandedCardId, setExpandedCardId] = useState(null);
 
     const toggleExpand = (id) => {
         setExpandedCardId(prevId => prevId === id ? null : id);
     };
 
-    // Función para obtener el ícono genérico si no hay logo
     const getGenericIcon = (type) => {
         switch (type) {
             case "Trabajo":
@@ -299,11 +296,14 @@ const Experience = () => {
             case "Educación":
                 return <FaGraduationCap />;
             case "Emprendimiento":
-                return <FaBullhorn />; // FaLightbulb, FaRocket
+                return <FaBullhorn />;
             default:
                 return <FaBriefcase />;
         }
     };
+
+    // Obtener el BASE_URL aquí, como en otros componentes
+    const baseUrl = import.meta.env.BASE_URL;
 
     return (
         <section className={styles.experienceSection}>
@@ -318,7 +318,8 @@ const Experience = () => {
                         {/* Icono/Logo en la línea de tiempo */}
                         <div className={styles.timelineIconContainer}>
                             {experience.logo ? (
-                                <img src={experience.logo} alt={`Logo de ${experience.organization}`} className={styles.timelineLogo} />
+                                // AÑADIDO: Prepend baseUrl al src de la imagen
+                                <img src={`${baseUrl}${experience.logo}`} alt={`Logo de ${experience.organization}`} className={styles.timelineLogo} />
                             ) : (
                                 <span className={styles.timelineGenericIcon}>{getGenericIcon(experience.type)}</span>
                             )}
