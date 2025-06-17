@@ -1,26 +1,36 @@
 /* Variables CSS (Asegúrate de que estén definidas globalmente en :root) */
 :root {
-    --primary-color: #00bcd4;
-    --secondary-color: #0097a7;
+    --primary-color: #00bcd4; /* Azul turquesa */
+    --secondary-color: #0097a7; /* Azul turquesa más oscuro para hover */
     --text-light: #e0e0e0;
     --text-medium: #ccc;
+    --text-dark: #000;
     --text-white: #fff;
     --background-dark-main: #0d0d0d;
-    --background-section-1: #121212; /* Fondo para la sección de experiencia */
-    --background-card: #1e1e1e; /* Fondo para las tarjetas de experiencia */
+    --background-section: #121212; /* Fondo principal de la sección */
+    --background-node: #1e1e1e; /* Fondo para nodos y tarjetas */
     --border-color: #00bcd4; /* Color para bordes y línea de tiempo */
-    --card-border-radius: 1rem; /* Radio de borde para las tarjetas */
+    --card-border-radius: 0.8rem; /* Radio de borde para nodos/tarjetas */
     --padding-section: 4rem 2rem;
-    --divider-height: 1px;
+    --root-node-size: 100px; /* Tamaño del nodo raíz */
+    --category-node-width: 250px; /* Ancho de los nodos de categoría */
+    --experience-node-height: 80px; /* Altura de los nodos de experiencia individuales */
+    --line-thickness: 3px; /* Grosor de las líneas de conexión */
+    --branch-color-1: #4CAF50; /* Verde para ramas (ej. Trabajo) */
+    --branch-color-2: #FFC107; /* Amarillo para ramas (ej. Educación) */
+    --branch-color-3: #F44336; /* Rojo para ramas (ej. Emprendimiento) */
+    --node-spacing: 40px; /* Espacio vertical entre nodos hijos */
+    --modal-max-width: 800px; /* Nuevo: Ancho máximo del modal */
+    --modal-image-size: 100px; /* Nuevo: Tamaño del logo en el modal */
 }
 
 /* Base Section Styling */
 .experienceSection {
-    background-color: var(--background-section-1);
+    background-color: var(--background-section);
     color: var(--text-light);
     padding: var(--padding-section);
     text-align: center;
-    overflow-x: hidden; /* Asegurar que no haya scroll horizontal si hay elementos fuera */
+    overflow-x: hidden;
 }
 
 .sectionTitle {
@@ -40,239 +50,476 @@
     line-height: 1.6;
 }
 
-/* Timeline Container */
-.timelineContainer {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 0; /* Padding vertical para la línea de tiempo */
-}
-
-/* La línea vertical central */
-.timelineContainer::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    background-color: var(--border-color);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -1.5px; /* Centrar la línea */
-    z-index: 0;
-}
-
-/* Item de la línea de tiempo (izquierda/derecha) */
-.timelineItem {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%; /* Ocupa la mitad del ancho del contenedor */
-    display: flex;
-    align-items: center; /* Alinea icono y tarjeta */
-    margin-bottom: 40px; /* Espacio entre ítems */
-}
-
-/* Posicionamiento a la izquierda */
-.timelineItem.left {
-    left: 0;
-    justify-content: flex-end; /* Alinea el contenido a la derecha dentro de su mitad */
-}
-
-/* Posicionamiento a la derecha */
-.timelineItem.right {
-    left: 50%;
-    padding-left: 70px; /* Espacio para el icono */
-}
-
-/* Ícono/Logo en la línea de tiempo */
-.timelineIconContainer {
-    position: absolute;
-    width: 60px; /* Tamaño del círculo del icono */
-    height: 60px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    border: 3px solid var(--text-white);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.timelineItem.left .timelineIconContainer {
-    right: -30px; /* Posiciona a la mitad de la línea */
-}
-
-.timelineItem.right .timelineIconContainer {
-    left: -30px; /* Posiciona a la mitad de la línea */
-}
-
-.timelineLogo {
-    width: 80%; /* Ajuste para el logo dentro del círculo */
-    height: 80%;
-    object-fit: contain; /* Para que el logo no se recorte */
-    border-radius: 50%; /* Para que los logos redondos se vean bien */
-    filter: brightness(0.95); /* Suave brillo para que resalte */
-}
-
-.timelineGenericIcon {
-    color: var(--text-white);
-    font-size: 2rem;
-    display: flex; /* Para centrar el icono */
-    align-items: center;
-    justify-content: center;
-}
-
-/* Tarjeta de Experiencia */
-.timelineCard {
-    background-color: var(--background-card);
-    padding: 1.5rem 2rem;
-    border-radius: var(--card-border-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: calc(100% - 60px); /* Ancho de la tarjeta menos el espacio del icono */
-    text-align: left; /* Alineación del texto dentro de la tarjeta */
-    border: 1px solid rgba(0, 188, 212, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timelineCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
-}
-
-.timelineItem.left .timelineCard {
-    margin-right: 30px; /* Espacio entre tarjeta y icono */
-}
-
-.timelineItem.right .timelineCard {
-    margin-left: 30px; /* Espacio entre tarjeta y icono */
-}
-
-.cardHeader {
+/* Git Flow Container */
+.gitFlowContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 50px;
 }
 
-.cardTitle {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-.cardSubtitle {
-    font-size: 1.1rem;
-    color: var(--text-medium);
-    margin-bottom: 0.8rem;
-}
-
-.cardBrief {
-    font-size: 1rem;
-    color: var(--text-light);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-}
-
-/* Botón de expandir/contraer */
-.expandButton {
+/* Nodo Raíz: "Mi Trayectoria" */
+.rootNode {
+    width: var(--root-node-size);
+    height: var(--root-node-size);
     background-color: var(--primary-color);
-    color: var(--text-dark);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    margin-top: 1rem; /* Espacio superior */
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+    position: relative;
+    z-index: 10;
+    margin-bottom: 60px;
 }
 
-.expandButton:hover {
-    background-color: var(--secondary-color);
-    transform: scale(1.05);
+.rootNodeIcon {
+    font-size: 3rem;
+    color: var(--text-dark);
 }
 
-.expandButton svg {
+.rootNodeTitle {
+    position: absolute;
+    bottom: -30px;
     font-size: 1.1rem;
+    color: var(--text-light);
+    width: 150px;
 }
 
-.expandButtonText {
-    font-size: 0.9rem;
+/* Líneas desde el nodo raíz a las categorías (pseudo-elementos en rootNode) */
+.rootNode::after {
+    content: '';
+    position: absolute;
+    width: var(--line-thickness);
+    height: 60px;
+    background-color: var(--primary-color);
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
 }
 
+/* Contenedor de Nodos Padre (Categorías) */
+.categoryNodesContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    padding-bottom: 150px;
+}
 
-/* Detalles expandibles */
-.cardDetails {
-    max-height: 0; /* Oculto por defecto */
+/* Líneas desde la línea raíz a los nodos de categoría */
+.categoryNodesContainer::before,
+.categoryNodesContainer::after {
+    content: '';
+    position: absolute;
+    height: var(--line-thickness);
+    background-color: var(--primary-color);
+    top: -5px;
+    z-index: 4;
+}
+
+.categoryNodesContainer::before {
+    left: 0;
+    width: 25%; /* Ajuste inicial para la bifurcación */
+    transform-origin: right center;
+    transform: rotate(15deg) translateY(-5px);
+    left: 10%;
+}
+.categoryNodesContainer::after {
+    right: 0;
+    width: 25%; /* Ajuste inicial para la bifurcación */
+    transform-origin: left center;
+    transform: rotate(-15deg) translateY(-5px);
+    right: 10%;
+}
+
+/* Nodos Padre (Categorías: Trabajo, Educación, Emprendimiento) */
+.categoryNode {
+    background-color: var(--background-node);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    width: var(--category-node-width);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 6;
+}
+
+.categoryNode:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 188, 212, 0.4);
+}
+
+.categoryNode .nodeContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+
+.categoryIcon {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.categoryTitle {
+    font-size: 1.3rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.categoryToggleIcon {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.categoryNodeExpanded .categoryToggleIcon {
+    transform: rotate(180deg);
+}
+
+/* Contenedor de Detalles de Categoría (para Nodos Hijos) */
+.categoryDetailsContainer {
+    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transición para expandir */
+    transition: max-height 0.7s ease-in-out;
     opacity: 0;
-    padding-top: 0; /* Sin padding cuando está cerrado */
+    transform: translateY(-10px);
+    pointer-events: none;
+    width: 100%;
+    padding-top: 0;
+    position: relative;
 }
 
-.cardDetails.expanded {
-    max-height: 500px; /* Suficiente altura para la mayoría de los contenidos, ajustar si es necesario */
+.categoryDetailsContainer.expanded {
+    max-height: 2000px;
     opacity: 1;
-    padding-top: 1rem; /* Padding cuando está expandido */
-    border-top: 1px solid rgba(0, 188, 212, 0.1); /* Separador sutil */
-    margin-top: 1rem;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding-top: 20px;
 }
 
-.cardDetails ul {
-    list-style: none; /* Eliminar viñetas por defecto */
+/* Nodos Hijos (Experiencias Individuales) */
+.experienceNode {
+    background-color: var(--background-dark-main);
+    color: var(--text-light);
+    padding: 0.8rem 1rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    margin-bottom: var(--node-spacing);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 7;
+    min-height: var(--experience-node-height);
+}
+
+.experienceNode:last-child {
+    margin-bottom: 0;
+}
+
+.experienceNode:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    border-color: var(--primary-color);
+}
+
+.experienceLogo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.experienceGenericIcon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experiencePosition {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.experiencePeriod {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+/* Líneas de conexión entre nodos hijos (conceptos de Git Flow) */
+.categoryDetailsContainer.expanded .experienceNode::before {
+    content: '';
+    position: absolute;
+    width: var(--line-thickness);
+    height: calc(100% + var(--node-spacing));
+    background-color: var(--primary-color);
+    left: 20px;
+    top: 0;
+    z-index: -1;
+}
+
+.categoryDetailsContainer.expanded .experienceNode:last-child::before {
+    height: 0;
+}
+
+/* Estilos para el modal (reutilizando y adaptando) */
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeInModal 0.3s ease-out forwards;
+}
+
+.modalContent {
+    background-color: var(--background-node);
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
+    max-width: var(--modal-max-width); /* Usando la variable para el ancho del modal */
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: scaleIn 0.3s ease-out forwards;
+    border: 1px solid var(--primary-color);
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center; /* Alinea verticalmente imagen y título/botón */
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 188, 212, 0.2);
+}
+
+.modalTitle {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.2;
+    flex-grow: 1; /* Permite que el título ocupe el espacio */
+    text-align: left; /* Alinea el título a la izquierda */
+    margin-left: 15px; /* Espacio si el logo está a la izquierda en el header */
+}
+
+.closeModalButton {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.closeModalButton:hover {
+    color: var(--primary-color);
+}
+
+/* Nuevo contenedor para el cuerpo del modal */
+.modalBodyContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-top: 1rem; /* Espacio entre el header y el contenido del body */
+}
+
+/* Estilo para el contenedor de la imagen en el modal */
+.modalImageContainer {
+    width: var(--modal-image-size); /* Usando la variable para el tamaño */
+    height: var(--modal-image-size);
+    border-radius: 50%; /* Redondo para los logos */
+    overflow: hidden;
+    margin-right: 15px; /* Espacio a la derecha si va junto a un texto */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.modalLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--background-dark-main);
+}
+
+/* Estilo para las etiquetas de información (Organización, Período, Resumen, Detalle) */
+.modalInfoLabel {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+    text-align: left; /* Alinea el texto a la izquierda */
+    padding-left: 5px; /* Pequeño padding para separación del borde del modal */
+}
+
+.modalInfoLabel strong {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.modalInfoValue {
+    color: var(--text-medium);
+}
+
+.modalBrief {
+    font-size: 1rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-left: 5px; /* Pequeño padding para separación del borde del modal */
+}
+
+.modalDetailsList {
+    list-style: none;
     padding: 0;
     margin: 0;
     color: var(--text-medium);
 }
 
-.cardDetails li {
+.modalDetailsList li {
     margin-bottom: 0.5rem;
-    padding-left: 1.2rem;
+    padding-left: 1.5rem;
     position: relative;
     font-size: 0.95rem;
     line-height: 1.4;
+    text-align: left; /* Asegura alineación a la izquierda */
 }
 
-.cardDetails li::before {
-    content: '•'; /* Viñeta personalizada */
+.modalDetailsList li::before {
+    content: '•';
     color: var(--primary-color);
     position: absolute;
     left: 0;
     font-weight: bold;
 }
 
+.modalLinkContainer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.modalLink {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.7rem 1.4rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.modalLink:hover {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* Animaciones del modal (reutilizadas de CV) */
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
 /* Responsive */
 @media (max-width: 900px) {
-    .timelineContainer::after {
-        left: 30px; /* Mueve la línea al lado izquierdo en pantallas medianas */
-        margin-left: 0;
+    .categoryNodesContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        padding-bottom: 80px;
     }
 
-    .timelineItem {
-        width: 100%; /* Ocupa todo el ancho */
-        padding-left: 70px; /* Asegura espacio para el icono */
-        margin-bottom: 30px;
+    .rootNode {
+        margin-bottom: 80px;
     }
 
-    .timelineItem.left,
-    .timelineItem.right {
-        left: 0; /* Todos los ítems a la izquierda */
-        justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    .rootNode::after {
+        height: 80px;
+        bottom: -80px;
     }
 
-    .timelineItem.left .timelineIconContainer,
-    .timelineItem.right .timelineIconContainer {
-        left: 0; /* Posiciona los iconos a la izquierda */
-        transform: translateX(-50%); /* Centra el icono en el borde */
-        /* right: auto; */
+    .categoryNodesContainer::before,
+    .categoryNodesContainer::after {
+        display: none;
     }
 
-    .timelineCard {
-        width: calc(100% - 60px); /* Ajuste de ancho de la tarjeta */
-        margin-left: 30px; /* Espacio entre icono y tarjeta */
-        margin-right: 0;
+    .categoryNode {
+        width: 80%;
+        max-width: 400px;
+        margin-bottom: 40px;
+    }
+
+    .categoryNode::after {
+        content: '';
+        position: absolute;
+        width: var(--line-thickness);
+        height: calc(100% + 40px);
+        background-color: var(--primary-color);
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        z-index: -1;
+    }
+    .categoryNodesContainer div:last-child.categoryNode::after {
+        height: 0;
+    }
+
+    .experienceNode {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
     }
 }
 
@@ -280,62 +527,97 @@
     .sectionTitle {
         font-size: 2.2rem;
     }
-
     .sectionSubtitle {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
-
-    .timelineIconContainer {
-        width: 50px; /* Iconos más pequeños en móviles */
-        height: 50px;
+    .rootNode {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 50px;
+    }
+    .rootNodeIcon {
+        font-size: 2.5rem;
+    }
+    .rootNodeTitle {
+        font-size: 0.9rem;
+        bottom: -25px;
+    }
+    .rootNode::after {
+        height: 70px;
+        bottom: -70px;
     }
 
-    .timelineLogo {
-        width: 75%;
-        height: 75%;
+    .categoryNodesContainer {
+        gap: 40px;
+        padding-bottom: 60px;
+    }
+    .categoryNode {
+        width: 90%;
+        padding: 0.8rem;
+    }
+    .categoryIcon {
+        font-size: 1.5rem;
+    }
+    .categoryTitle {
+        font-size: 1.1rem;
+    }
+    .categoryToggleIcon {
+        font-size: 1rem;
+    }
+    .categoryDetailsContainer.expanded {
+        padding-top: 15px;
     }
 
-    .timelineGenericIcon {
-        font-size: 1.7rem;
+    .experienceNode {
+        padding: 0.6rem 0.8rem;
+        gap: 10px;
+        margin-bottom: 25px;
+        min-height: 70px;
     }
-
-    .timelineItem {
-        padding-left: 60px; /* Ajuste para el nuevo tamaño del icono */
+    .experienceLogo {
+        width: 35px;
+        height: 35px;
     }
-
-    .timelineCard {
-        padding: 1rem 1.2rem;
-        width: calc(100% - 50px);
-        margin-left: 20px;
-    }
-
-    .cardTitle {
+    .experienceGenericIcon {
         font-size: 1.3rem;
+        width: 35px;
+        height: 35px;
     }
-
-    .cardSubtitle {
-        font-size: 0.9rem;
+    .experiencePosition {
+        font-size: 1rem;
     }
-
-    .cardBrief {
-        font-size: 0.85rem;
-    }
-
-    .expandButton {
-        padding: 0.4rem 0.8rem;
-        gap: 6px;
-    }
-
-    .expandButton svg {
-        font-size: 0.9rem;
-    }
-
-    .expandButtonText {
+    .experiencePeriod {
         font-size: 0.8rem;
     }
-
     .cardDetails li {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        padding-left: 1.3rem;
+    }
+    .modalContent {
+        padding: 1rem;
+    }
+    .modalHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .modalTitle {
+        font-size: 1.6rem;
+    }
+    .closeModalButton {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+    .modalImageContainer {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+    .modalSubtitle, .modalBrief, .modalInfoLabel, .modalDetailsList li {
+        font-size: 0.9rem;
+    }
+    .modalLink {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
     }
 }
