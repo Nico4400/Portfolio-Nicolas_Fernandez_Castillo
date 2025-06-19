@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { FaBriefcase, FaGraduationCap, FaBullhorn, FaPlus, FaMinus, FaAtom } from 'react-icons/fa';
+import { FaBriefcase, FaGraduationCap, FaBullhorn, FaPlus, FaMinus, FaAtom, FaCodeBranch } from 'react-icons/fa';
+import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiNodejs, DiMongodb, DiGit } from 'react-icons/di';
 
 
 const experienceCategories = {
@@ -8,7 +9,11 @@ const experienceCategories = {
         {
             id: 1,
             organization: "Instituto de la Vivienda PBA - Subsecretaría de Planificación de Desarrollo Urbano y Vivienda.",
-            logo: "/logos/pba.jpg",
+            // Ahora 'logos' es un array de objetos { src, alt }. Si solo hay uno, es un array de un elemento.
+            logos: [
+                { src: "/logos/pba.jpg", alt: "Logo de la Provincia de Buenos Aires" },
+                { src: "/logos/IVBA.jpg", alt: "Logo de Instituto de la Vivienda" },
+            ],
             position: "Control Interno",
             period: "2021 - Actualidad",
             brief: "Control de planillas automatizadas para detectar errores en el manejo de los usuarios, optimizando la comunicación interna y externa.",
@@ -27,7 +32,11 @@ const experienceCategories = {
         {
             id: 2,
             organization: "Ministerio de Infraestructura - Subsecretaría de Planificación y Evaluación de Gestión, Provincia de Buenos Aires.",
-            logo: "/logos/pba.jpg",
+            logos: [
+                { src: "/logos/pba.jpg", alt: "Logo de la Provincia de Buenos Aires" },
+                { src: "/logos/Minfra.png", alt: "Logo de Ministerio de Infraestructura" },
+
+            ],
             position: "Coordinador - Dirección de Coordinación y Monitoreo Interjurisdiccional - (Certificaciones)",
             period: "2020 - Oct. 2021",
             brief: "Supervisión y coordinación de la certificación de convenios, control de preventivos y desarrollo de herramientas para agilizar procesos.",
@@ -46,7 +55,11 @@ const experienceCategories = {
         {
             id: 3,
             organization: "Ministerio de Infraestructura - Subsecretaría de Planificación y Evaluación de Gestión, Provincia de Buenos Aires.",
-            logo: "/logos/pba.jpg",
+            logos: [
+                { src: "/logos/pba.jpg", alt: "Logo de la Provincia de Buenos Aires" },
+                { src: "/logos/Minfra.png", alt: "Logo de Ministerio de Infraestructura" },
+
+            ],
             position: "Consultor de Sistemas SAP",
             period: "2018 - 2020",
             brief: "Lideré la optimización de procesos y la implementación del módulo financiero en SAP ERP, impactando la eficiencia de la certificación de obra pública.",
@@ -61,7 +74,7 @@ const experienceCategories = {
         {
             id: 4,
             organization: "Big Sky Resort, Montana (MT).",
-            logo: "/logos/BigSky.png",
+            logos: [{ src: "/logos/BigSky1.png", alt: "Logo de Big Sky Resort" }], // Asegúrate del nombre del archivo y extensión
             position: "Lift Operator (ascensorista de telesquíes)",
             period: "Dic. 2011 - Mar. 2012",
             brief: "Responsable de la operación segura y eficiente de telesquíes, garantizando la seguridad de los usuarios y el mantenimiento operativo.",
@@ -76,7 +89,16 @@ const experienceCategories = {
         {
             id: 7,
             organization: "CoderHouse",
-            logo: "/logos/CoderHouse.png",
+            logos: [
+                { src: "/logos/CoderHouse.png", alt: "Logo de CoderHouse" },
+                { icon: <DiHtml5 />, label: "HTML5" },
+                { icon: <DiCss3 />, label: "CSS3" },
+                { icon: <DiJavascript1 />, label: "JavaScript" },
+                { icon: <DiReact />, label: "React.js" },
+                { icon: <DiNodejs />, label: "Node.js" },
+                { icon: <DiMongodb />, label: "MongoDB" },
+                { icon: <DiGit />, label: "Git" },
+            ],
             position: "Desarrollo Full Stack",
             period: "2023 - 2024",
             brief: "Formación intensiva en desarrollo web front-end y back-end, con enfoque en tecnologías modernas y metodologías ágiles.",
@@ -92,12 +114,13 @@ const experienceCategories = {
         {
             id: 5,
             organization: "Universidad Nacional de la Plata - Facultad de Ingeniería. (UNLP)",
-            logo: "/logos/unlp_ing2.png",
+            logos: [{ src: "/logos/unlp_ing2.png", alt: "Logo de la UNLP" }], // Asegúrate del nombre del archivo y extensión
             position: "Ingeniero Industrial",
             period: "2009 - 2019",
             brief: "Formación integral en optimización de procesos, gestión de proyectos y toma de decisiones, con una base sólida en análisis cuantitativo para la resolución de problemas complejos.",
             descriptionPoints: [
                 "Título de Ingeniero Industrial (R.M. 3620/17) otorgado por la Universidad Nacional de La Plata, Facultad de Ingeniería.",
+                "Promedio general de 6.48.",
                 "Sólida formación en Fluidodinámica, Mecánica, Estructuras, Termodinámica y Materiales.",
                 "Profundos conocimientos en Programación, Algoritmos y Estructuras de Datos, sentando bases para el desarrollo de software.",
                 "Desarrollo de habilidades en Matemáticas (A, B, C), Física (I, II, III B), Estadística y Probabilidades para análisis cuantitativo.",
@@ -110,7 +133,7 @@ const experienceCategories = {
         {
             id: 6,
             organization: "Instituto Cultural Itálico Leonardo DaVinci La Plata.",
-            logo: "/logos/italiana.png",
+            logos: [{ src: "/logos/italiana.png", alt: "Logo del Instituto Leonardo DaVinci" }], // Asegúrate del nombre del archivo y extensión
             position: "Bachiller en Ciencias Naturales",
             period: "2006 - 2008",
             brief: "Obtención del título de Bachiller en Ciencias Naturales con un promedio general destacado, desarrollando una sólida base en ciencias exactas y habilidades de investigación.",
@@ -126,8 +149,12 @@ const experienceCategories = {
     "Emprendimiento": [
         {
             id: 8,
-            organization: "Nutrimas (anteriormente CANEVIANDAS)",
-            logo: "/logos/logo_nutrimas.png",
+            organization: "Nutrimas (Caneviandas y Feliviandas)",
+            logos: [
+                { src: "/logos/logo_nutrimas.png", alt: "Logo de Nutrimas" },
+                { src: "/logos/foto_caneviandas.jpg", alt: "Logo de Caneviandas" },
+                { src: "/logos/foto_feliviandas.jpg", alt: "Logo de Feliviandas" }
+            ],
             position: "Co-fundador / Analista de Negocio",
             period: "2016 - Actualidad",
             brief: "Lideré el estudio de viabilidad y la estrategia comercial de un microemprendimiento de alimentación, aplicando principios de ingeniería y ciencia de datos.",
@@ -170,7 +197,7 @@ const Experience = () => {
             case "Emprendimiento":
                 return <FaBullhorn />;
             default:
-                return <FaCodeBranch />;
+                return <FaCodeBranch />; // Icono por defecto, si la categoría no coincide
         }
     };
 
@@ -226,9 +253,11 @@ const Experience = () => {
                                         aria-label={`Ver detalles de ${experience.position} en ${experience.organization}`}
                                     >
                                         <div className={styles.nodeContent}>
-                                            {experience.logo ? (
-                                                <img src={`${baseUrl}${experience.logo}`} alt={`Logo de ${experience.organization}`} className={styles.experienceLogo} />
+                                            {experience.logos && experience.logos.length > 0 && experience.logos[0].src ? (
+                                                // Muestra el primer logo del array para el nodo de la línea de tiempo
+                                                <img src={`${baseUrl}${experience.logos[0].src}`} alt={`Logo de ${experience.organization}`} className={styles.experienceLogo} />
                                             ) : (
+                                                // Fallback al icono genérico si no hay logos o el primer logo no tiene src
                                                 <span className={styles.experienceGenericIcon}>{getCategoryIcon(experience.type)}</span>
                                             )}
                                             <p className={styles.experiencePosition}>{experience.position}</p>
@@ -250,45 +279,62 @@ const Experience = () => {
                             <h3 id="experience-modal-title" className={styles.modalTitle}>{modalExperience.position}</h3>
                             <button onClick={closeModal} className={styles.closeModalButton} aria-label="Cerrar detalles de experiencia">✕</button>
                         </div>
-                        {/* Aquí es donde se mostrará la imagen, Organización, Período, Resumen y Detalle */}
-                        {modalExperience.logo && (
-                            <div className={styles.modalImageContainer}>
-                                <img src={`${baseUrl}${modalExperience.logo}`} alt={`Logo de ${modalExperience.organization}`} 
-                                className={styles.modalLogo} />
-                            </div>
-                        )}
-                        <p className={styles.modalInfoLabel}><strong>Organización:</strong> <span className={styles.modalInfoValue}>{modalExperience.organization}</span></p>
-                        <p className={styles.modalInfoLabel}><strong>Período:</strong> <span className={styles.modalInfoValue}>{modalExperience.period}</span></p>
-                        <p className={styles.modalInfoLabel}><strong>Resumen:</strong></p>
-                        <p className={styles.modalBrief}>{modalExperience.brief}</p>
-                        
-                        {modalExperience.descriptionPoints && modalExperience.descriptionPoints.length > 0 && (
-                            <>
-                                <p className={styles.modalInfoLabel}><strong>Detalle:</strong></p>
-                                <ul className={styles.modalDetailsList}>
-                                    {modalExperience.descriptionPoints.map((point, i) => (
-                                        <li key={i}>{point}</li>
+                        {/* Contenido del cuerpo del modal con imagen y etiquetas */}
+                        <div className={styles.modalBodyContent}>
+                            {/* Muestra MÚLTIPLES LOGOS en el modal */}
+                        {modalExperience.logos && modalExperience.logos.length > 0 && (
+                                <div className={styles.modalLogosContainer}>
+                                    {modalExperience.logos.map((logoItem, idx) => (
+                                        <div key={idx} className={styles.modalImageContainer}>
+                                            {logoItem.src ? ( // Si el objeto tiene una propiedad 'src'
+                                                <img
+                                                    src={`${baseUrl}${logoItem.src}`}
+                                                    alt={logoItem.alt || `Logo de ${modalExperience.organization}`}
+                                                    className={styles.modalLogo}
+                                                />
+                                            ) : logoItem.icon ? ( // Si el objeto tiene una propiedad 'icon'
+                                                <span className={styles.modalTechIcon} aria-label={logoItem.label || "Icono de tecnología"}>
+                                                    {logoItem.icon}
+                                                </span>
+                                            ) : null}
+                                            {logoItem.label && <span className={styles.modalTechIconLabel}>{logoItem.label}</span>} {/* Opcional: mostrar el label debajo del icono */}
+                                        </div>
                                     ))}
-                                </ul>
-                            </>
-                        )}
-                        {modalExperience.link && (
-                            <div className={styles.modalLinkContainer}>
-                                <a
-                                    href={modalExperience.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.modalLink}
-                                    title={`Ir a la página web de ${modalExperience.organization}`}
-                                >
-                                    {modalExperience.linkText || 'Visitar Enlace'}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{ marginLeft: '8px', verticalAlign: 'middle' }}>
-                                        <path fillRule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-                                        <path fillRule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V4.5a.5.5 0 0 0 1 0z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        )}
+                                </div>
+                            )}
+                            <p className={styles.modalInfoLabel}><strong>Organización:</strong> <span className={styles.modalInfoValue}>{modalExperience.organization}</span></p>
+                            <p className={styles.modalInfoLabel}><strong>Período:</strong> <span className={styles.modalInfoValue}>{modalExperience.period}</span></p>
+                            <p className={styles.modalInfoLabel}><strong>Resumen:</strong></p>
+                            <p className={styles.modalBrief}>{modalExperience.brief}</p>
+                            
+                            {modalExperience.descriptionPoints && modalExperience.descriptionPoints.length > 0 && (
+                                <>
+                                    <p className={styles.modalInfoLabel}><strong>Detalle:</strong></p>
+                                    <ul className={styles.modalDetailsList}>
+                                        {modalExperience.descriptionPoints.map((point, i) => (
+                                            <li key={i}>{point}</li>
+                                        ))}
+                                    </ul>
+                                </>
+                            )}
+                            {modalExperience.link && (
+                                <div className={styles.modalLinkContainer}>
+                                    <a
+                                        href={modalExperience.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.modalLink}
+                                        title={`Ir a la página web de ${modalExperience.organization}`}
+                                    >
+                                        {modalExperience.linkText || 'Visitar Enlace'}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{ marginLeft: '8px', verticalAlign: 'middle' }}>
+                                            <path fillRule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                                            <path fillRule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V4.5a.5.5 0 0 0 1 0z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

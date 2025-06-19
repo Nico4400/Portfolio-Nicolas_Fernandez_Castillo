@@ -1,4 +1,3 @@
-/* Variables CSS (Asegúrate de que estén definidas globalmente en :root) */
 :root {
     --primary-color: #00bcd4; /* Azul turquesa */
     --secondary-color: #0097a7; /* Azul turquesa más oscuro para hover */
@@ -20,8 +19,8 @@
     --branch-color-2: #FFC107; /* Amarillo para ramas (ej. Educación) */
     --branch-color-3: #F44336; /* Rojo para ramas (ej. Emprendimiento) */
     --node-spacing: 40px; /* Espacio vertical entre nodos hijos */
-    --modal-max-width: 800px; /* Nuevo: Ancho máximo del modal */
-    --modal-image-size: 100px; /* Nuevo: Tamaño del logo en el modal */
+    --modal-max-width: 800px; /* Ancho máximo del modal */
+    --modal-image-size: 100px; /* Tamaño del logo en el modal */
 }
 
 /* Base Section Styling */
@@ -126,14 +125,14 @@
 
 .categoryNodesContainer::before {
     left: 0;
-    width: 25%; /* Ajuste inicial para la bifurcación */
+    width: 25%;
     transform-origin: right center;
     transform: rotate(15deg) translateY(-5px);
     left: 10%;
 }
 .categoryNodesContainer::after {
     right: 0;
-    width: 25%; /* Ajuste inicial para la bifurcación */
+    width: 25%;
     transform-origin: left center;
     transform: rotate(-15deg) translateY(-5px);
     right: 10%;
@@ -292,7 +291,7 @@
     height: 0;
 }
 
-/* Estilos para el modal (reutilizando y adaptando) */
+/* Estilos para el modal */
 .modalBackdrop {
     position: fixed;
     top: 0;
@@ -313,7 +312,7 @@
     padding: 1.5rem;
     border-radius: var(--card-border-radius);
     box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
-    max-width: var(--modal-max-width); /* Usando la variable para el ancho del modal */
+    max-width: var(--modal-max-width); /* Ancho máximo del modal (800px) */
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
@@ -325,7 +324,7 @@
 
 .modalHeader {
     display: flex;
-    align-items: center; /* Alinea verticalmente imagen y título/botón */
+    align-items: center; /* Alinea verticalmente imagen (si estuviera aquí) y título/botón */
     justify-content: space-between;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
@@ -337,9 +336,9 @@
     color: var(--primary-color);
     margin: 0;
     line-height: 1.2;
-    flex-grow: 1; /* Permite que el título ocupe el espacio */
-    text-align: left; /* Alinea el título a la izquierda */
-    margin-left: 15px; /* Espacio si el logo está a la izquierda en el header */
+    flex-grow: 1;
+    text-align: left;
+    /* margin-left: 15px; Este margen podría ser problemático si el logo no está en el header */
 }
 
 .closeModalButton {
@@ -355,34 +354,68 @@
     color: var(--primary-color);
 }
 
-/* Nuevo contenedor para el cuerpo del modal */
+/* Contenedor para el cuerpo del modal con los detalles de la experiencia */
 .modalBodyContent {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    padding-top: 1rem; /* Espacio entre el header y el contenido del body */
+    padding-top: 1rem;
 }
 
-/* Estilo para el contenedor de la imagen en el modal */
-.modalImageContainer {
-    width: var(--modal-image-size); /* Usando la variable para el tamaño */
+/* Contenedor de logos múltiples en el modal */
+.modalLogosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start; /* Alinea los logos a la izquierda */
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 188, 212, 0.1);
+    padding-left: 5px; /* Pequeño padding para alinear con el texto */
+}
+
+/* Estilo para cada contenedor de imagen individual en el modal */
+.modalImageContainer { /* Ya existe, pero se aplicará a ambos tipos (img y span) */
+    width: var(--modal-image-size); /* 100px */
     height: var(--modal-image-size);
-    border-radius: 50%; /* Redondo para los logos */
+    border-radius: 50%; /* Mantener circular si se quiere */
     overflow: hidden;
-    margin-right: 15px; /* Espacio a la derecha si va junto a un texto */
     flex-shrink: 0;
     display: flex;
+    flex-direction: column; /* Para apilar icono y label */
     align-items: center;
     justify-content: center;
     border: 2px solid var(--primary-color);
-    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);    
+}
+
+/* Estilo para los componentes de React Icons de tecnología */
+.modalTechIcon {
+    font-size: calc(var(--modal-image-size) * 0.6); /* Icono un poco más pequeño que el contenedor */
+    color: var(--primary-color); /* Color del icono */
+    display: flex; /* Centrar el icono dentro del span */
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 3px rgba(0, 188, 212, 0.5)); /* Un pequeño brillo */
+}
+
+/* Estilo para las etiquetas debajo de los iconos (opcional) */
+.modalTechIconLabel {
+    font-size: 0.75rem;
+    color: var(--text-medium);    
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se rompa */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+    max-width: 100%; /* Para que ellipsis funcione */
 }
 
 .modalLogo {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background-color: var(--background-dark-main);
+    object-fit:contain; /* Para que el logo se vea completo */
+    background-color: var(--background-dark-main); /* Fondo para logos con transparencia */
 }
 
 /* Estilo para las etiquetas de información (Organización, Período, Resumen, Detalle) */
@@ -391,7 +424,7 @@
     color: var(--text-light);
     margin-bottom: 0.2rem;
     text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 5px; /* Pequeño padding para separación del borde del modal */
+    padding-left: 5px; /* Pequeño padding para alinear con el texto */
 }
 
 .modalInfoLabel strong {
@@ -409,11 +442,11 @@
     line-height: 1.5;
     margin-bottom: 1.5rem;
     text-align: left;
-    padding-left: 5px; /* Pequeño padding para separación del borde del modal */
+    padding-left: 5px; /* Pequeño padding para alinear con el texto */
 }
 
 .modalDetailsList {
-    list-style: none;
+    list-style: none; /* Elimina viñetas por defecto */
     padding: 0;
     margin: 0;
     color: var(--text-medium);
@@ -421,11 +454,11 @@
 
 .modalDetailsList li {
     margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
+    padding-left: 1.5rem; /* Sangría para la viñeta custom */
     position: relative;
     font-size: 0.95rem;
     line-height: 1.4;
-    text-align: left; /* Asegura alineación a la izquierda */
+    text-align: left; /* Alinea a la izquierda */
 }
 
 .modalDetailsList li::before {
@@ -438,7 +471,8 @@
 
 .modalLinkContainer {
     margin-top: 1.5rem;
-    text-align: center;
+    text-align: left; /* Alinea el enlace a la izquierda */
+    padding-left: 5px; /* Pequeño padding para alinear */
 }
 
 .modalLink {
@@ -521,6 +555,11 @@
         margin-right: auto;
         width: 95%;
     }
+
+    /* Modal Responsive en 900px */
+    .modalContent {
+        max-width: 700px; /* Ajuste si 800px es demasiado en esta resolución */
+    }
 }
 
 @media (max-width: 600px) {
@@ -583,6 +622,9 @@
         font-size: 1.3rem;
         width: 35px;
         height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .experiencePosition {
         font-size: 1rem;
@@ -594,8 +636,11 @@
         font-size: 0.8rem;
         padding-left: 1.3rem;
     }
+
+    /* Modal Responsive en 600px */
     .modalContent {
         padding: 1rem;
+        max-width: 95%;
     }
     .modalHeader {
         flex-direction: column;
@@ -603,15 +648,20 @@
     }
     .modalTitle {
         font-size: 1.6rem;
+        margin-left: 0;
     }
     .closeModalButton {
         font-size: 1.5rem;
         margin-top: 0.5rem;
     }
-    .modalImageContainer {
-        width: 80px;
-        height: 80px;
+    .modalLogosContainer {
+        gap: 10px;
         margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+    }
+    .modalImageContainer {
+        width: 70px;
+        height: 70px;
     }
     .modalSubtitle, .modalBrief, .modalInfoLabel, .modalDetailsList li {
         font-size: 0.9rem;
