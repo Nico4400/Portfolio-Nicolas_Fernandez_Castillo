@@ -387,7 +387,7 @@
     align-items: center;
     justify-content: center;
     border: 2px solid var(--primary-color);
-    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);    
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);      
 }
 
 /* Estilo para los componentes de React Icons de tecnología */
@@ -662,6 +662,14 @@
     .modalImageContainer {
         width: 70px;
         height: 70px;
+        gap: 0px;
+    }
+    .modalTechIcon{
+        width: 45px;
+        height: 45px;
+    }
+    .modalTechIconLabel{
+        font-size: 0.55rem;
     }
     .modalSubtitle, .modalBrief, .modalInfoLabel, .modalDetailsList li {
         font-size: 0.9rem;

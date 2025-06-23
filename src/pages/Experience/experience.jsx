@@ -9,10 +9,9 @@ const experienceCategories = {
         {
             id: 1,
             organization: "Instituto de la Vivienda PBA - Subsecretaría de Planificación de Desarrollo Urbano y Vivienda.",
-            // Ahora 'logos' es un array de objetos { src, alt }. Si solo hay uno, es un array de un elemento.
             logos: [
                 { src: "/logos/pba.jpg", alt: "Logo de la Provincia de Buenos Aires" },
-                { src: "/logos/IVBA.jpg", alt: "Logo de Instituto de la Vivienda" },
+                { src: "/logos/IVBA2.jpg", alt: "Logo de Instituto de la Vivienda" },
             ],
             position: "Control Interno",
             period: "2021 - Actualidad",
@@ -65,6 +64,7 @@ const experienceCategories = {
             brief: "Lideré la optimización de procesos y la implementación del módulo financiero en SAP ERP, impactando la eficiencia de la certificación de obra pública.",
             descriptionPoints: [
                 "Seguimiento y control de obras a través del sistema SAP ERP.",
+                "Carga en las distintas transacciones del sistema SAP ERP",
                 "Relevamiento y análisis de pliegos y contratos técnicos para la carga en SAP.",
                 "Asistencia y capacitación a áreas técnicas en el uso de transacciones SAP (MM, PS, PM, FI, LSMW, Hana).",
                 "Desarrollo de manuales de gestión y certificación para capacitación de usuarios.",
@@ -74,7 +74,7 @@ const experienceCategories = {
         {
             id: 4,
             organization: "Big Sky Resort, Montana (MT).",
-            logos: [{ src: "/logos/BigSky1.png", alt: "Logo de Big Sky Resort" }], // Asegúrate del nombre del archivo y extensión
+            logos: [{ src: "/logos/BigSky1.png", alt: "Logo de Big Sky Resort" }],
             position: "Lift Operator (ascensorista de telesquíes)",
             period: "Dic. 2011 - Mar. 2012",
             brief: "Responsable de la operación segura y eficiente de telesquíes, garantizando la seguridad de los usuarios y el mantenimiento operativo.",
@@ -103,7 +103,7 @@ const experienceCategories = {
             period: "2023 - 2024",
             brief: "Formación intensiva en desarrollo web front-end y back-end, con enfoque en tecnologías modernas y metodologías ágiles.",
             descriptionPoints: [
-                "Dominio de tecnologías Front-End: HTML5, CSS3, JavaScript (ES6+), React.js, Vite.",
+                "Dominio de tecnologías Front-End: HTML, CSS, JavaScript, React.js, Vite.",
                 "Desarrollo de Back-End con Node.js y Express.js para APIs RESTful.",
                 "Gestión de bases de datos SQL y NoSQL (MongoDB).",
                 "Manejo de Git y GitHub para control de versiones y colaboración.",
@@ -114,29 +114,27 @@ const experienceCategories = {
         {
             id: 5,
             organization: "Universidad Nacional de la Plata - Facultad de Ingeniería. (UNLP)",
-            logos: [{ src: "/logos/unlp_ing2.png", alt: "Logo de la UNLP" }], // Asegúrate del nombre del archivo y extensión
+            logos: [{ src: "/logos/unlp_ing2.png", alt: "Logo de la UNLP" }],
             position: "Ingeniero Industrial",
             period: "2009 - 2019",
             brief: "Formación integral en optimización de procesos, gestión de proyectos y toma de decisiones, con una base sólida en análisis cuantitativo para la resolución de problemas complejos.",
             descriptionPoints: [
                 "Título de Ingeniero Industrial (R.M. 3620/17) otorgado por la Universidad Nacional de La Plata, Facultad de Ingeniería.",
-                "Promedio general de 6.48.",
                 "Sólida formación en Fluidodinámica, Mecánica, Estructuras, Termodinámica y Materiales.",
                 "Profundos conocimientos en Programación, Algoritmos y Estructuras de Datos, sentando bases para el desarrollo de software.",
-                "Desarrollo de habilidades en Matemáticas (A, B, C), Física (I, II, III B), Estadística y Probabilidades para análisis cuantitativo.",
-                "Especialización en áreas de Producción (I, II, III), Administración General y Sistemas Administrativos, Administración Financiera, Comercialización y Dirección General.",
+                "Desarrollo de habilidades en Matemáticas, Física, Estadística y Probabilidades para análisis cuantitativo.",
+                "Especialización en áreas de Producción, Administración General y Sistemas Administrativos, Administración Financiera, Comercialización y Dirección General.",
                 "Formulación y Evaluación de Proyectos, Higiene y Seguridad en el Trabajo, e Ingeniería Legal.",
                 "Práctica Profesional Supervisada y Trabajo Final que integraron conocimientos teóricos y prácticos.",
-                "Curso de Idioma: Inglés (Aprobado)."
             ]
         },
         {
             id: 6,
             organization: "Instituto Cultural Itálico Leonardo DaVinci La Plata.",
-            logos: [{ src: "/logos/italiana.png", alt: "Logo del Instituto Leonardo DaVinci" }], // Asegúrate del nombre del archivo y extensión
+            logos: [{ src: "/logos/italiana.png", alt: "Logo del Instituto Leonardo DaVinci" }],
             position: "Bachiller en Ciencias Naturales",
             period: "2006 - 2008",
-            brief: "Obtención del título de Bachiller en Ciencias Naturales con un promedio general destacado, desarrollando una sólida base en ciencias exactas y habilidades de investigación.",
+            brief: "Obtención del título de Bachiller en Ciencias Naturales, desarrollando una sólida base en ciencias exactas y habilidades de investigación.",
             descriptionPoints: [
                 "Estudios Internacionales: Licenza Media / Esame di Stato, Maturitá.",
                 "Título de Bachiller, modalidad CIENCIAS NATURALES.",
@@ -157,8 +155,9 @@ const experienceCategories = {
             ],
             position: "Co-fundador / Analista de Negocio",
             period: "2016 - Actualidad",
-            brief: "Lideré el estudio de viabilidad y la estrategia comercial de un microemprendimiento de alimentación, aplicando principios de ingeniería y ciencia de datos.",
+            brief: "Lideré el estudio de viabilidad y la estrategia comercial de un microemprendimiento de alimentación de las mascotas, aplicando principios de nutrición, ingeniería y ciencia de datos.",
             descriptionPoints: [
+                "Análisis de las recetas nutricionales acorde a la alimentación de la mascotas(BARF)",
                 "Análisis de los 5 mercados (consumidor, proveedor, competidor, sustitutos y distribuidor) para evaluación del proyecto.",
                 "Desarrollo de estrategia comercial para atracción y fidelización de clientes.",
                 "Estudio técnico para definir el tamaño de lote y tiempos de producción.",
