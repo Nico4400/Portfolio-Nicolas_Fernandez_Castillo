@@ -212,9 +212,13 @@ const Experience = () => {
             <div className={styles.gitFlowContainer}>
                 {/* Nodo Raíz: "Mi Trayectoria" */}
                 <div className={styles.rootNode}>
-                    <div className={styles.nodeContent}>
-                        <FaAtom className={styles.rootNodeIcon} aria-hidden="true" />
+                    {/* Contenedor para el título que estará por encima del icono */}
+                    <div className={styles.rootNodeTitleContainer}> 
                         <h3 className={styles.rootNodeTitle}>Mi Trayectoria</h3>
+                    </div>
+                    {/* Contenedor para el icono FaAtom (el círculo) */}
+                    <div className={styles.rootNodeIconContainer}>
+                        <FaAtom className={styles.rootNodeIcon} aria-hidden="true" />
                     </div>
                 </div>
 

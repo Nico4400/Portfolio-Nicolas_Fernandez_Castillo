@@ -21,6 +21,9 @@
     --node-spacing: 40px; /* Espacio vertical entre nodos hijos */
     --modal-max-width: 800px; /* Ancho máximo del modal */
     --modal-image-size: 100px; /* Tamaño del logo en el modal */
+    --root-node-padding-x: 25px; /* Padding horizontal para el título raíz */
+    --root-node-padding-y: 15px; /* Padding vertical para el título raíz */
+    --root-node-gap: 20px;       /* Espacio entre el título raíz y su icono */
 }
 
 /* Base Section Styling */
@@ -60,6 +63,49 @@
 
 /* Nodo Raíz: "Mi Trayectoria" */
 .rootNode {
+    display: flex;
+    flex-direction: column;   /* Apila el título y el icono verticalmente */
+    align-items: center;      /* Centra ambos elementos horizontalmente */
+    position: relative;
+    z-index: 10;
+    margin-bottom: var(--node-spacing); /* Espacio debajo de todo el rootNode */
+}
+
+/* Contenedor del Título "Mi Trayectoria" */
+.rootNodeTitleContainer {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: var(--root-node-padding-y) var(--root-node-padding-x);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+    position: relative;         /* CRUCIAL para que el pseudo-elemento ::after se posicione correctamente */
+    z-index: 15;                /* Por encima de la línea y el icono */
+    margin-bottom: var(--root-node-gap); /* Crea el espacio para la línea */
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Línea que conecta el Título con el Icono */
+.rootNodeTitleContainer::after {
+    content: '';
+    position: absolute;
+    width: var(--line-thickness);            /* Grosor de la línea */
+    height: var(--root-node-gap);            /* Longitud de la línea (igual al gap) */
+    background-color: var(--primary-color);  /* Color de la línea */
+    top: 100%;                               /* Comienza justo al final del contenedor del título */
+    left: 50%;                               /* Se centra horizontalmente */
+    transform: translateX(-50%);             /* Ajuste fino para el centrado perfecto */
+    z-index: 12;                             /* Detrás del título pero sobre otras líneas de fondo */
+}
+
+.rootNodeIcon {
+    font-size: 3rem;
+    color: var(--text-dark);
+    flex-shrink: 0;
+}
+
+/* Contenedor del Icono FaAtom */
+.rootNodeIconContainer {
     width: var(--root-node-size);
     height: var(--root-node-size);
     background-color: var(--primary-color);
@@ -67,34 +113,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
-    position: relative;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+    position: relative; /* Mantiene su posicionamiento para la línea que sale hacia abajo */
     z-index: 10;
-    margin-bottom: 60px;
-}
-
-.rootNodeIcon {
-    font-size: 3rem;
-    color: var(--text-dark);
 }
 
 .rootNodeTitle {
-    position: absolute;
-    bottom: -30px;
-    font-size: 1.1rem;
-    color: var(--text-light);
-    width: 150px;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0;
+    white-space: nowrap;
 }
 
-/* Líneas desde el nodo raíz a las categorías (pseudo-elementos en rootNode) */
-.rootNode::after {
+/* Línea desde el nodo del icono (vertical) */
+.rootNodeIconContainer::after {
     content: '';
     position: absolute;
     width: var(--line-thickness);
-    height: 60px;
+    height: var(--node-spacing);
     background-color: var(--primary-color);
-    bottom: -60px;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
@@ -104,7 +142,6 @@
 .categoryNodesContainer {
     display: flex;
     justify-content: space-around;
-    gap: 40px;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -511,12 +548,11 @@
     .categoryNodesContainer {
         flex-direction: column;
         align-items: center;
-        gap: 60px;
         padding-bottom: 80px;
     }
 
     .rootNode {
-        margin-bottom: 80px;
+        margin-bottom: var(--node-spacing);
     }
 
     .rootNode::after {
@@ -531,8 +567,8 @@
 
     .categoryNode {
         width: 80%;
-        max-width: 400px;
-        margin-bottom: 40px;
+        max-width: 450px;
+        margin-bottom: var(--node-spacing);
     }
 
     .categoryNode::after {
@@ -571,12 +607,14 @@
         margin-bottom: 2rem;
     }
     .rootNode {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 50px;
+        margin-bottom: var(--node-spacing);
     }
     .rootNodeIcon {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    .rootNodeIconContainer{
+        height: 70px;
+        width: 70px;
     }
     .rootNodeTitle {
         font-size: 0.9rem;
@@ -588,12 +626,12 @@
     }
 
     .categoryNodesContainer {
-        gap: 40px;
         padding-bottom: 60px;
     }
     .categoryNode {
-        width: 90%;
+        width: 100%;
         padding: 0.8rem;
+        margin-bottom: var(--node-spacing);
     }
     .categoryIcon {
         font-size: 1.5rem;
