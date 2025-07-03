@@ -13,7 +13,7 @@ const experienceCategories = {
                 { src: "/logos/pba.jpg", alt: "Logo de la Provincia de Buenos Aires" },
                 { src: "/logos/IVBA2.jpg", alt: "Logo de Instituto de la Vivienda" },
             ],
-            position: "Control Interno",
+            position: "Analista de Optimización y Control de Gestión",
             period: "2021 - Actualidad",
             brief: "Control de planillas automatizadas para detectar errores en el manejo de los usuarios, optimizando la comunicación interna y externa.",
             descriptionPoints: [
@@ -36,8 +36,8 @@ const experienceCategories = {
                 { src: "/logos/Minfra.png", alt: "Logo de Ministerio de Infraestructura" },
 
             ],
-            position: "Coordinador - Dirección de Coordinación y Monitoreo Interjurisdiccional - (Certificaciones)",
-            period: "2020 - Oct. 2021",
+            position: "Coordinador de Dirección de Certificaciones",
+            period: "2020 - 2021",
             brief: "Supervisión y coordinación de la certificación de convenios, control de preventivos y desarrollo de herramientas para agilizar procesos.",
             descriptionPoints: [
                 "Supervisión y control de los preventivos de obra para asegurar una planificación presupuestaria anual efectiva.",
@@ -75,8 +75,8 @@ const experienceCategories = {
             id: 4,
             organization: "Big Sky Resort, Montana (MT).",
             logos: [{ src: "/logos/BigSky1.png", alt: "Logo de Big Sky Resort" }],
-            position: "Lift Operator (ascensorista de telesquíes)",
-            period: "Dic. 2011 - Mar. 2012",
+            position: "Lift Operator (Operador de telesquíes)",
+            period: "2011 - 2012",
             brief: "Responsable de la operación segura y eficiente de telesquíes, garantizando la seguridad de los usuarios y el mantenimiento operativo.",
             descriptionPoints: [
                 "Responsable de la operación segura y eficiente de los elevadores de sillas de montaña y sus usuarios.",
@@ -153,7 +153,7 @@ const experienceCategories = {
                 { src: "/logos/foto_caneviandas.jpg", alt: "Logo de Caneviandas" },
                 { src: "/logos/foto_feliviandas.jpg", alt: "Logo de Feliviandas" }
             ],
-            position: "Co-fundador / Analista de Negocio",
+            position: "Desarrollador y Analista de Negocio",
             period: "2016 - Actualidad",
             brief: "Lideré el estudio de viabilidad y la estrategia comercial de un microemprendimiento de alimentación de las mascotas, aplicando principios de nutrición, ingeniería y ciencia de datos.",
             descriptionPoints: [
@@ -263,8 +263,10 @@ const Experience = () => {
                                                 // Fallback al icono genérico si no hay logos o el primer logo no tiene src
                                                 <span className={styles.experienceGenericIcon}>{getCategoryIcon(experience.type)}</span>
                                             )}
+                                        <div className={styles.experienceTextContainer}>
                                             <p className={styles.experiencePosition}>{experience.position}</p>
                                             <p className={styles.experiencePeriod}>{experience.period}</p>
+                                        </div>
                                         </div>
                                     </div>
                                 ))}

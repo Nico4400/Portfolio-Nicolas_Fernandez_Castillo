@@ -12,7 +12,7 @@
     --card-border-radius: 0.8rem; /* Radio de borde para nodos/tarjetas */
     --padding-section: 4rem 2rem;
     --root-node-size: 100px; /* Tamaño del nodo raíz */
-    --category-node-width: 250px; /* Ancho de los nodos de categoría */
+    --category-node-width: 300px; /* Ancho de los nodos de categoría */
     --experience-node-height: 80px; /* Altura de los nodos de experiencia individuales */
     --line-thickness: 3px; /* Grosor de las líneas de conexión */
     --branch-color-1: #4CAF50; /* Verde para ramas (ej. Trabajo) */
@@ -145,7 +145,7 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     padding-bottom: 150px;
 }
 
@@ -299,17 +299,33 @@
     justify-content: center;
 }
 
+/* Contenedor del Título y Período dentro del nodo hijo */
+.experienceTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sigue alineando la posición a la izquierda */
+    flex-grow: 1; /* Ocupa el espacio disponible */
+    gap: 2px; /* Espacio mínimo entre position y period */
+    width: 100%; /* <--- AJUSTE CLAVE: Asegura que ocupe todo el ancho del nodeContent */
+    text-align: center; /* <--- AJUSTE CLAVE: Para centrar hijos de bloque si los hubiera, aunque primará flex */
+}
+
 .experiencePosition {
     font-size: 1.1rem;
     font-weight: bold;
     color: var(--primary-color);
     margin: 0;
+    text-align: left; /* La posición sigue a la izquierda */
+    width: 100%; /* Asegura que ocupe todo el ancho para su propia alineación */
 }
 
 .experiencePeriod {
     font-size: 0.9rem;
     color: var(--text-medium);
-    margin: 0;
+    margin: 0 auto; /* <--- AJUSTE CLAVE: Centra horizontalmente el elemento */
+    text-align: center; /* Centra el texto dentro del elemento */
+    width: 100%; /* <--- AJUSTE CLAVE: Asegura que ocupe todo el ancho para un centrado efectivo */
+    padding-right: 45px;
 }
 
 /* Líneas de conexión entre nodos hijos (conceptos de Git Flow) */
