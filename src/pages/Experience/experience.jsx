@@ -266,6 +266,10 @@ const Experience = () => {
                                         <div className={styles.experienceTextContainer}>
                                             <p className={styles.experiencePosition}>{experience.position}</p>
                                             <p className={styles.experiencePeriod}>{experience.period}</p>
+                                                {/* Icono + para indicar expansión */}
+                                            <span className={styles.expandHintIcon} aria-hidden="true">
+                                                <FaPlus />
+                                            </span>
                                         </div>
                                         </div>
                                     </div>

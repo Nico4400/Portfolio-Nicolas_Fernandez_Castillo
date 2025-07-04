@@ -328,6 +328,22 @@
     padding-right: 45px;
 }
 
+.expandHintIcon {
+    font-size: 0.9rem; /* Tamaño del icono + */
+    color: var(--primary-color);
+    margin-top: 5px; /* Pequeño margen superior para separarlo de la fecha */
+    transition: opacity 0.2s ease;    
+    display: block; /* <--- AJUSTE CLAVE: Para que ocupe su propia línea y se pueda centrar */
+    width: 100%; /* <--- AJUSTE CLAVE: Asegura que ocupe todo el ancho de su padre */
+    text-align: center; /* <--- AJUSTE CLAVE: Centra el contenido (el icono FaPlus) */
+    padding-right: 45px;
+}
+
+.experienceNode:hover .expandHintIcon {
+    opacity: 1;
+    color: var(--text-medium); /* Color sutil */
+}
+
 /* Líneas de conexión entre nodos hijos (conceptos de Git Flow) */
 .categoryDetailsContainer.expanded .experienceNode::before {
     content: '';
