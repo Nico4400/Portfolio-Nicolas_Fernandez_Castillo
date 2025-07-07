@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react'; // Importa useRef y useEffect
 import styles from './styles.module.css';
 import { FaBriefcase, FaGraduationCap, FaBullhorn, FaPlus, FaMinus, FaAtom, FaCodeBranch } from 'react-icons/fa';
 import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiNodejs, DiMongodb, DiGit } from 'react-icons/di';
@@ -175,6 +175,11 @@ const Experience = () => {
     const [expandedCategory, setExpandedCategory] = useState(null);
     const [modalExperience, setModalExperience] = useState(null);
 
+    // Nuevo ref para el contenido del modal
+    const modalContentRef = useRef(null);
+    // Estado para la posición del botón de cerrar
+    const [closeButtonPos, setCloseButtonPos] = useState({ top: 0, right: 0 });
+
     const toggleCategoryExpand = (categoryName) => {
         setExpandedCategory(prevCategory => prevCategory === categoryName ? null : categoryName);
     };
@@ -201,6 +206,36 @@ const Experience = () => {
     };
 
     const baseUrl = import.meta.env.BASE_URL;
+
+        // Efecto para calcular la posición del botón de cerrar
+    useEffect(() => {
+        const calculateButtonPosition = () => {
+            if (modalContentRef.current) {
+                const rect = modalContentRef.current.getBoundingClientRect();
+                const buttonSize = 40; // Tamaño del botón (width/height) en px, según tu CSS base
+                
+                setCloseButtonPos({
+                    top: rect.top - (buttonSize / 2), 
+                    left: rect.right - (buttonSize / 2), /* USANDO LEFT AHORA */
+                });
+            }
+        };
+
+        // Recalcular al abrir el modal, al scrollear o al redimensionar la ventana
+        if (modalExperience) {
+            calculateButtonPosition(); // Calcula la posición inicial
+            window.addEventListener('resize', calculateButtonPosition);
+            // Si el modalContent es scrollable, también escuchar su scroll para ajustar el botón si este también lo fuera.
+            // Para position: fixed, no es necesario escuchar el scroll del modalContent.
+            // Para position: fixed, el botón no se moverá con el scroll del modal.
+            // Si el body es scrollable, y el modal NO ocupa 100% de la altura, el botón se moverá con el body scroll.
+        }
+
+        // Limpieza de event listeners
+        return () => {
+            window.removeEventListener('resize', calculateButtonPosition);
+        };
+    }, [modalExperience]); // Recalcular cuando el modal se abre/cierra
 
     return (
         <section className={styles.experienceSection} aria-labelledby="experience-section-title">
@@ -286,7 +321,7 @@ const Experience = () => {
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.modalHeader}>
                             <h3 id="experience-modal-title" className={styles.modalTitle}>{modalExperience.position}</h3>
-                            <button onClick={closeModal} className={styles.closeModalButton} aria-label="Cerrar detalles de experiencia">✕</button>
+                            {/* <button onClick={closeModal} className={styles.closeModalButton} aria-label="Cerrar detalles de experiencia">✕</button> */}
                         </div>
                         {/* Contenido del cuerpo del modal con imagen y etiquetas */}
                         <div className={styles.modalBodyContent}>
@@ -344,7 +379,17 @@ const Experience = () => {
                                 </div>
                             )}
                         </div>
+                        {/* <--- AJUSTE CLAVE: BOTÓN DE CERRAR AHORA ES HERMANO DEL MODAL CONTENT, DENTRO DEL BACKDROP ---> */}
                     </div>
+                    <button
+                        onClick={closeModal}
+                        className={styles.closeModalButton}
+                        aria-label="Cerrar detalles de experiencia"
+                        // El estilo top/left se calculará en useEffect para alinear con el modal
+                        style={{ top: closeButtonPos.top, left: closeButtonPos.left }} /* AQUI SE APLICA */
+                    >
+                        ✕
+                    </button>
                 </div>
             )}
         </section>

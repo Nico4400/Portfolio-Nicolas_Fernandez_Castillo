@@ -410,17 +410,38 @@
     /* margin-left: 15px; Este margen podría ser problemático si el logo no está en el header */
 }
 
+/* Estilos para el botón de cerrar (ahora fijo al viewport) */
 .closeModalButton {
-    background: transparent;
-    border: none;
-    color: var(--text-light);
-    font-size: 1.8rem;
+    /* Fondo, color de la 'X', borde, tamaño, fuente, cursor, transición */
+    background-color: var(--background-node); /* <--- CAMBIO CLAVE: Fondo del modalContent */
+    color: var(--primary-color); /* <--- CAMBIO CLAVE: Color de la 'X' para que contraste con el fondo oscuro */
+    border: 1px solid var(--primary-color); /* <--- CAMBIO CLAVE: Borde del modalContent */
+    border-radius: 50%; /* <--- CAMBIO CLAVE: Forma completamente circular */
+    width: 40px; /* Tamaño del círculo */
+    height: 40px; /* Tamaño del círculo */
+    font-size: 1.8rem; /* Tamaño de la 'X' */
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+    position: fixed; /* Mantenemos fixed para que no se mueva al scrollear */
+    z-index: 1002; /* Z-index muy alto */
+    
+    display: flex; /* Para centrar la 'X' */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3); /* <--- CAMBIO CLAVE: Sombra similar al modalContent */
+    padding: 0; /* <--- AJUSTE CLAVE: Elimina cualquier padding que pueda distorsionar */
+    margin: 0; /* <--- AJUSTE CLAVE: Elimina cualquier margen */
+    margin-top: 5px;
+
+    /* Propiedades top/left/right/bottom serán controladas por JS, no las declaramos aquí fijas */
+    /* top: 0; right: 0; */ /* Asegúrate de que no estén aquí */
 }
 
 .closeModalButton:hover {
-    color: var(--primary-color);
+    background-color: var(--primary-color); /* Al hacer hover, que tenga el color primary */
+    color: var(--text-dark); /* Color de la 'X' oscuro en hover */
+    transform: scale(1.1); /* Efecto sutil al pasar el ratón */
 }
 
 /* Contenedor para el cuerpo del modal con los detalles de la experiencia */
@@ -688,6 +709,7 @@
         width: 35px;
         height: 35px;
     }
+
     .experienceGenericIcon {
         font-size: 1.3rem;
         width: 35px;
@@ -721,8 +743,10 @@
         margin-left: 0;
     }
     .closeModalButton {
-        font-size: 1.5rem;
-        margin-top: 0.5rem;
+        font-size: 1.2rem; /* Tamaño de la 'X' para móvil */
+        width: 35px;
+        height: 35px;
+        margin-top: 5px;
     }
     .modalLogosContainer {
         gap: 10px;
