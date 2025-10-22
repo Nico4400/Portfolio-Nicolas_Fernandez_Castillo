@@ -2,13 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import avatarImg from '/Avatar01.png';
+import contactoImg from '/contacto.png'
+import experienciaImg from '/experiencia.png'
 
 const sections = [
   {
     title: 'Sobre mí',
     description: 'Conocé mi perfil profesional, formación, valores y lo que me motiva como ingeniero industrial orientado a la tecnología.',
     link: '/about',
-    image: avatarImg,
+    image: avatarImg || 'https://source.unsplash.com/800x600/?contact,communication',
   },
   {
     title: 'Proyectos',
@@ -26,13 +28,13 @@ const sections = [
     title: 'Experiencia',
     description: 'Un recorrido por mi experiencia profesional y los roles que me ayudaron a crecer.',
     link: '/experience',
-    image: 'https://source.unsplash.com/800x600/?office,career',
+    image: experienciaImg || 'https://source.unsplash.com/800x600/?office,career',
   },
   {
     title: 'Contacto',
     description: '¿Tenés una idea o necesitás ayuda? Estoy listo para escucharte y colaborar.',
     link: '/contact',
-    image: 'https://source.unsplash.com/800x600/?contact,communication',
+    image: contactoImg || 'https://source.unsplash.com/800x600/?contact,communication',
   },
 ];
 
