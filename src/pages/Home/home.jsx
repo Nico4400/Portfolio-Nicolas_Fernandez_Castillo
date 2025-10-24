@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
+import perfilImg from '/perfil.jpg'
 import avatarImg from '/Avatar01.png';
 import contactoImg from '/contacto.png'
 import experienciaImg from '/experiencia.png'
@@ -58,7 +59,7 @@ const Home = () => {
 
           <figure className={styles.imageContent}>
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"
+              src= {perfilImg || "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"}
               alt="Foto de presentación de Nicolás Fernández Castillo"
               className={styles.introImage}
             />
