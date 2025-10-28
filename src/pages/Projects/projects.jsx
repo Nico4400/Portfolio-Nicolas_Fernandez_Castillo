@@ -1,7 +1,6 @@
-// FILE: Projects.jsx (con secciones, 5+ tarjetas por fila, cards más grandes, modal casi full-screen con galería)
 import { useMemo, useRef, useState, useEffect } from "react";
 import { FiExternalLink, FiGithub, FiInfo, FiX, FiChevronLeft, FiChevronRight, FiSearch, FiMaximize } from "react-icons/fi";
-import styles from "./styles.module.css"; // CSS Module separado (renombrado)
+import styles from "./styles.module.css";
 
 /** Modelo de datos
  * id: string
@@ -19,26 +18,25 @@ import styles from "./styles.module.css"; // CSS Module separado (renombrado)
  */
 
 const seed = [
-  {
+{
     id: "nutrimas-web",
-    title: "E‑commerce Nutrimás (React + Node)",
+    title: "Nutrimás (Caneviandas + Feliviandas)",
     category: "web",
-    thumbnail:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1600&auto=format&fit=crop",
+    thumbnail: "https://image.thum.io/get/width/1200/crop/768/noanimate/https://nico4400.github.io/Nutrimas/",
     images: [
-      "https://images.unsplash.com/photo-1515165562835-c3b8c8f4a1cf?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1600&auto=format&fit=crop",
+      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/",
+      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/#productos",
+      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/#contacto"
     ],
-    short: "Tienda con carrito, checkout y panel básico.",
+    short: "Sitio con catálogo de Caneviandas/Feliviandas y armado de pedido.",
     description:
-      "E‑commerce fullstack: catálogo, filtros, carrito, checkout, órdenes y envío de emails. Deploy frontend con Vite + GitHub Pages y backend en Render.",
-    tech: ["React", "Vite", "Context", "Node", "Express", "MongoDB"],
-    tags: ["SPA", "Responsive", "Deploy"],
+      "Sitio web para el emprendimiento Nutrimas con secciones Caneviandas y Feliviandas, recetas, ingredientes, preparación, contacto y un sistema de armado de pedido con redirección a WhatsApp. Incluye carrusel hero, bloques de producto, y detalle de envíos en CABA/GBA.",
+    tech: ["HTML", "SCSS", "JavaScript", "GitHub Pages"],
+    tags: ["Catálogo interactivo", "Diseño adaptable", "Integración WhatsApp", "Optimización SEO"],
     links: {
-      live: "https://nico4400.github.io/Portfolio-Nicolas_Fernandez_Castillo/",
-      repo: "https://github.com/Nico4400",
-    },
+      live: "https://nico4400.github.io/Nutrimas/",
+      repo: "https://github.com/Nico4400/Nutrimas"
+    },  
     featured: true,
   },
   {
