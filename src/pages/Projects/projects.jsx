@@ -16,17 +16,26 @@ import styles from "./styles.module.css";
  * interactive?: { type: "iframe" | "image"; src: string }
  * featured?: boolean
  */
+const BASE = import.meta.env.BASE_URL;
+const FALLBACK = `${BASE}/fallback.webp`;
+
+/* 👇 Handler global reutilizable para fallback de imágenes */
+const applyFallback = (e) => {
+  if (e.currentTarget.dataset.fallbackApplied) return;
+  e.currentTarget.dataset.fallbackApplied = "1";
+  e.currentTarget.src = FALLBACK;
+};
 
 const seed = [
-{
+  {
     id: "nutrimas-web",
     title: "Nutrimás (Caneviandas + Feliviandas)",
     category: "web",
-    thumbnail: "https://image.thum.io/get/width/1200/crop/768/noanimate/https://nico4400.github.io/Nutrimas/",
+    thumbnail: `${BASE}projects/nutrimas/thumb.webp`,
     images: [
-      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/",
-      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/#productos",
-      "https://image.thum.io/get/https://nico4400.github.io/Nutrimas/#contacto"
+      `${BASE}projects/nutrimas/thumb.webp`,
+      `${BASE}projects/nutrimas/1.webp`,
+      `${BASE}projects/nutrimas/2.webp`
     ],
     short: "Sitio con catálogo de Caneviandas/Feliviandas y armado de pedido.",
     description:
@@ -39,6 +48,71 @@ const seed = [
     },  
     featured: true,
   },
+  {
+    id: "curso-js-proyecto-final",
+    title: "Proyecto JS – E-commerce (Vanilla)",
+    category: "web",
+    thumbnail: `${BASE}projects/js-final/thumb.webp`,
+    images: [
+      `${BASE}projects/js-final/thumb.webp`,
+      `${BASE}projects/js-final/1.webp`,
+      `${BASE}projects/js-final/2.webp`
+    ],
+    short: "Catálogo y carrito construidos con JavaScript puro.",
+    description:
+      "Proyecto final del curso de JavaScript: sitio tipo e-commerce con grilla de productos, interacción de compra y flujo de carrito. Manipulación del DOM, manejo de estados y persistencia con localStorage. Build y publicación en GitHub Pages.",
+    tech: ["JavaScript", "HTML", "CSS", "LocalStorage", "GitHub Pages"],
+    tags: ["Catálogo interactivo", "Carrito", "UI Responsive", "Persistencia"],
+    links: {
+      live: "https://nico4400.github.io/Curso_Coder_Js/ProyectoFinal-Fern%C3%A1ndez_Castillo_Nicol%C3%A1s/",
+      repo: "https://github.com/Nico4400/Curso_Coder_Js"
+    },
+    featured: false
+  },
+  {
+  id: "react-proyecto-final",
+  title: "E-commerce React – Proyecto Final",
+  category: "web",
+  thumbnail: `${BASE}projects/react-final/thumb.webp`,
+  images: [
+    `${BASE}projects/react-final/thumb.webp`,
+    `${BASE}projects/react-final/1.webp`,
+    `${BASE}projects/react-final/2.webp`
+  ],
+  short: "SPA de e-commerce con catálogo y carrito en React.",
+  description:
+    "Aplicación web de e-commerce en React con catálogo, detalle de productos y flujo de carrito. Gestión de estado en frontend y build para GitHub Pages.",
+  tech: ["React", "Vite", "JavaScript", "CSS", "GitHub Pages"],
+  tags: ["SPA", "Catálogo interactivo", "Carrito", "UI Responsive"],
+  links: {
+    live: "https://nico4400.github.io/React-ProyectoFinal/",
+    repo: "https://github.com/Nico4400/React-ProyectoFinal"
+  },
+  featured: false
+  },
+  {
+    id: "backend-proyecto-final",
+    title: "API Backend – Proyecto Final (Node/Express)",
+    category: "web", // si preferís, podés moverlo a "otros"
+    thumbnail: `${BASE}projects/backend-final/thumb.webp`,
+    images: [
+      `${BASE}projects/backend-final/thumb.webp`,
+      `${BASE}projects/backend-final/1.webp`,
+      `${BASE}projects/backend-final/2.webp`
+    ],
+    short: "API REST con autenticación y persistencia; deploy en Render.",
+    description:
+      "Servidor Node/Express con endpoints REST y autenticación para usuarios (login en /login). Persistencia en base de datos, middlewares de seguridad y manejo de sesiones/tokens. Incluye ejemplo de consumo vía Postman/Insomnia y deploy en Render.",
+    tech: ["Node.js", "Express", "MongoDB", "Render"],
+    tags: ["Autenticación", "REST API", "Persistencia", "Deploy"],
+    links: {
+      live: "https://proyectofinal-backend-qjzc.onrender.com/login",
+      repo: "https://github.com/Nico4400/ProyectoFinal-Backend"
+    },
+    featured: false
+  },
+
+
   {
     id: "factura-smart-form",
     title: "Formulario inteligente de Facturas",
@@ -191,7 +265,7 @@ function ProjectCard({ project }) {
   return (
     <article className={styles.card} id={`card-${project.id}`}>
       <button className={styles.thumbBtn} onClick={() => setOpen(true)} aria-label={`Abrir ${project.title}`}>
-        <img src={project.thumbnail} alt={project.title} className={styles.thumb} loading="lazy" />
+        <img src={project.thumbnail} alt={project.title} className={styles.thumb} loading="lazy" decoding="async" onError={applyFallback}/>
         <div className={styles.thumbOverlay}>
           <div className={styles.thumbTitle}>{project.title}</div>
           <div className={styles.pills}>
@@ -259,13 +333,13 @@ function ProjectModal({ project, onClose }) {
         {/* Galería */}
         <div className={styles.gallery}>
           <div className={styles.galleryMain}>
-            <img src={active} alt="" className={styles.galleryMainImg} onClick={() => setLightbox(active)} />
+            <img src={active} alt="" className={styles.galleryMainImg} onClick={() => setLightbox(active)} onError={(e) => { applyFallback(e); setActive(FALLBACK); }}/>
             <button className={styles.zoomBtn} onClick={() => setLightbox(active)} aria-label="Ampliar"><FiMaximize/></button>
           </div>
           <div className={styles.galleryThumbnails}>
             {thumbs.map((src, i) => (
               <button key={i} className={`${styles.thumbMini} ${active===src?styles.thumbMiniActive:""}`} onClick={() => setActive(src)}>
-                <img src={src} alt="miniatura" />
+                <img src={src} alt="miniatura" onError={applyFallback}/>
               </button>
             ))}
           </div>
