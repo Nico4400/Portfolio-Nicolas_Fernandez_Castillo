@@ -29,7 +29,7 @@ const applyFallback = (e) => {
 const seed = [
   {
     id: "nutrimas-web",
-    title: "Nutrimás - Catálogo web",
+    title: "Nutrimás - Catálogo Web",
     category: "web",
     thumbnail: `${BASE}/nutrimasWeb.webp`,
     images: [
@@ -39,7 +39,7 @@ const seed = [
     ],
     short: "Sitio con catálogo de Caneviandas/Feliviandas, armado de pedido, recetas e integración a WhatsApp.",
     description:
-      "Desarrollo de un sitio web multipágina para la marca Nutrimas, con secciones dedicadas a Caneviandas y Feliviandas. Incluye catálogo interactivo, recetas, información de productos y un sistema de armado de pedidos con redirección automática a WhatsApp. Diseño adaptable y optimizado para SEO.",
+      "Desarrollo de un sitio Web para la marca Nutrimas, con secciones dedicadas a Caneviandas y Feliviandas. Incluye catálogo interactivo, recetas, información de productos y un sistema de armado de pedidos con redirección automática a WhatsApp. Diseño adaptable y optimizado para SEO.",
     tech: ["HTML", "SCSS", "JavaScript", "GitHub Pages"],
     tags: ["Catálogo interactivo", "Diseño adaptable", "Automatización", "Optimización SEO"],
     links: {
@@ -50,15 +50,15 @@ const seed = [
   },
   {
     id: "curso-JS-proyecto-final",
-    title: "E-commerce Vanilla JS – Proyecto Final",
+    title: "E-commerce JavaScript",
     category: "web",
-    thumbnail: `${BASE}projects/js-final/thumb.webp`,
+    thumbnail: `${BASE}/javaScript.webp`,
     images: [
-      `${BASE}projects/js-final/thumb.webp`,
-      `${BASE}projects/js-final/1.webp`,
-      `${BASE}projects/js-final/2.webp`
+      `${BASE}/javaScript.webp`,
+      `${BASE}/javaScript1.webp`,
+      `${BASE}/javaScript2.webp`
     ],
-    short: "Aplicación web con catálogo, carrito y persistencia local.",
+    short: "Aplicación Web con catálogo, carrito y persistencia local.",
     description:
       "Desarrollo de un e-commerce con JavaScript puro (Vanilla JS). Permite explorar un catálogo de productos, agregarlos al carrito y mantener la información mediante LocalStorage. Implementa manipulación del DOM, validaciones y un flujo de compra completo. Publicado en GitHub Pages como proyecto final del curso de JavaScript.",
     tech: ["JavaScript", "HTML", "CSS", "LocalStorage", "GitHub Pages"],
