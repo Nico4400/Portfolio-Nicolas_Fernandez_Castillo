@@ -31,7 +31,7 @@ const seed = [
     id: "nutrimas-web",
     title: "Nutrimás - Catálogo web",
     category: "web",
-    thumbnail: `${BASE}/nutrimasWeb.png`,
+    thumbnail: `${BASE}/nutrimasWeb.webp`,
     images: [
       `${BASE}/nutrimasWeb.webp`,
       `${BASE}/nutrimasWeb1.webp`,

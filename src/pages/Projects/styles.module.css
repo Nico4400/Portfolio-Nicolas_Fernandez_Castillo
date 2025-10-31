@@ -447,7 +447,7 @@
     aspect-ratio: 16 / 10;
     width: 100%;
     height: auto;            /* 👈 evita sobrealtura */
-    object-fit: cover;
+    object-fit: contain;
   }
 
   /* La X siempre visible en la esquina del modal (mientras scrollea) */
