@@ -29,19 +29,19 @@ const applyFallback = (e) => {
 const seed = [
   {
     id: "nutrimas-web",
-    title: "Nutrimás (Caneviandas + Feliviandas)",
+    title: "Nutrimás - Catálogo web",
     category: "web",
-    thumbnail: `${BASE}projects/nutrimas/thumb.webp`,
+    thumbnail: `${BASE}/nutrimasWeb.png`,
     images: [
-      `${BASE}projects/nutrimas/thumb.webp`,
-      `${BASE}projects/nutrimas/1.webp`,
-      `${BASE}projects/nutrimas/2.webp`
+      `${BASE}/nutrimasWeb.webp`,
+      `${BASE}/nutrimasWeb1.webp`,
+      `${BASE}/nutrimasWeb2.webp`,
     ],
-    short: "Sitio con catálogo de Caneviandas/Feliviandas y armado de pedido.",
+    short: "Sitio con catálogo de Caneviandas/Feliviandas, armado de pedido, recetas e integración a WhatsApp.",
     description:
-      "Sitio web para el emprendimiento Nutrimas con secciones Caneviandas y Feliviandas, recetas, ingredientes, preparación, contacto y un sistema de armado de pedido con redirección a WhatsApp. Incluye carrusel hero, bloques de producto, y detalle de envíos en CABA/GBA.",
+      "Desarrollo de un sitio web multipágina para la marca Nutrimas, con secciones dedicadas a Caneviandas y Feliviandas. Incluye catálogo interactivo, recetas, información de productos y un sistema de armado de pedidos con redirección automática a WhatsApp. Diseño adaptable y optimizado para SEO.",
     tech: ["HTML", "SCSS", "JavaScript", "GitHub Pages"],
-    tags: ["Catálogo interactivo", "Diseño adaptable", "Integración WhatsApp", "Optimización SEO"],
+    tags: ["Catálogo interactivo", "Diseño adaptable", "Automatización", "Optimización SEO"],
     links: {
       live: "https://nico4400.github.io/Nutrimas/",
       repo: "https://github.com/Nico4400/Nutrimas"
@@ -49,8 +49,8 @@ const seed = [
     featured: true,
   },
   {
-    id: "curso-js-proyecto-final",
-    title: "Proyecto JS – E-commerce (Vanilla)",
+    id: "curso-JS-proyecto-final",
+    title: "E-commerce Vanilla JS – Proyecto Final",
     category: "web",
     thumbnail: `${BASE}projects/js-final/thumb.webp`,
     images: [
@@ -58,11 +58,11 @@ const seed = [
       `${BASE}projects/js-final/1.webp`,
       `${BASE}projects/js-final/2.webp`
     ],
-    short: "Catálogo y carrito construidos con JavaScript puro.",
+    short: "Aplicación web con catálogo, carrito y persistencia local.",
     description:
-      "Proyecto final del curso de JavaScript: sitio tipo e-commerce con grilla de productos, interacción de compra y flujo de carrito. Manipulación del DOM, manejo de estados y persistencia con localStorage. Build y publicación en GitHub Pages.",
+      "Desarrollo de un e-commerce con JavaScript puro (Vanilla JS). Permite explorar un catálogo de productos, agregarlos al carrito y mantener la información mediante LocalStorage. Implementa manipulación del DOM, validaciones y un flujo de compra completo. Publicado en GitHub Pages como proyecto final del curso de JavaScript.",
     tech: ["JavaScript", "HTML", "CSS", "LocalStorage", "GitHub Pages"],
-    tags: ["Catálogo interactivo", "Carrito", "UI Responsive", "Persistencia"],
+    tags: ["DOM Dinámico", "Catálogo interactivo", "Carrito", "UI Responsive", "Persistencia Local"],
     links: {
       live: "https://nico4400.github.io/Curso_Coder_Js/ProyectoFinal-Fern%C3%A1ndez_Castillo_Nicol%C3%A1s/",
       repo: "https://github.com/Nico4400/Curso_Coder_Js"
@@ -79,11 +79,11 @@ const seed = [
     `${BASE}projects/react-final/1.webp`,
     `${BASE}projects/react-final/2.webp`
   ],
-  short: "SPA de e-commerce con catálogo y carrito en React.",
+  short: "SPA de e-commerce con React, routing y carrito dinámico.",
   description:
-    "Aplicación web de e-commerce en React con catálogo, detalle de productos y flujo de carrito. Gestión de estado en frontend y build para GitHub Pages.",
+    "Aplicación web SPA desarrollada en React con catálogo dinámico, vista de detalle y flujo completo de carrito. Implementa gestión de estado con Context API, React Router y renderizado condicional. Diseño responsive y build optimizado para GitHub Pages.",
   tech: ["React", "Vite", "JavaScript", "CSS", "GitHub Pages"],
-  tags: ["SPA", "Catálogo interactivo", "Carrito", "UI Responsive"],
+  tags: ["SPA", "Routing", "Catálogo interactivo", "Carrito dinamico", "UI Responsive"],
   links: {
     live: "https://nico4400.github.io/React-ProyectoFinal/",
     repo: "https://github.com/Nico4400/React-ProyectoFinal"
@@ -93,7 +93,7 @@ const seed = [
   {
     id: "backend-proyecto-final",
     title: "API Backend – Proyecto Final (Node/Express)",
-    category: "web", // si preferís, podés moverlo a "otros"
+    category: "web",
     thumbnail: `${BASE}projects/backend-final/thumb.webp`,
     images: [
       `${BASE}projects/backend-final/thumb.webp`,
@@ -102,8 +102,8 @@ const seed = [
     ],
     short: "API REST con autenticación y persistencia; deploy en Render.",
     description:
-      "Servidor Node/Express con endpoints REST y autenticación para usuarios (login en /login). Persistencia en base de datos, middlewares de seguridad y manejo de sesiones/tokens. Incluye ejemplo de consumo vía Postman/Insomnia y deploy en Render.",
-    tech: ["Node.js", "Express", "MongoDB", "Render"],
+      "Desarrollo de un backend escalable para un e-commerce educativo. Implementa autenticación de usuarios, gestión de productos y sesiones seguras con persistencia en MongoDB. Desplegado en Render, con endpoints documentados y testables vía Postman.",
+    tech: ["Node.js", "Express", "MongoDB", "JWT", "Sessions" , "Render"],
     tags: ["Autenticación", "REST API", "Persistencia", "Deploy"],
     links: {
       live: "https://proyectofinal-backend-qjzc.onrender.com/login",
@@ -111,6 +111,7 @@ const seed = [
     },
     featured: false
   },
+
 
 
   {
@@ -207,7 +208,7 @@ function ensureFivePerCategory(items) {
     const list = byCat.get(c.key);
     if (!list) continue;
     if (list.length === 0) continue; // si no tenés nada en una cat, no forzamos
-    while (list.length < 5) {
+    while (list.length < 4) {
       const base = list[list.length % Math.max(1, list.length - 0)];
       const idx = list.length + 1;
       list.push({
